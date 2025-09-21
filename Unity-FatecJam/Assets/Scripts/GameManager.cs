@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,8 +8,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+    public bool isMusicPlaying = false;
     public int totalScore = 0;
     public int streakLevel = 0;
+    public AudioMixer audioMixer = null;
 
     public static event Action<int> OnScoreChanged;
 

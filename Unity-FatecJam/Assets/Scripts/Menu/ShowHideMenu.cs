@@ -36,12 +36,12 @@ public class ShowHideMenu : MonoBehaviour
 
         while (time < transitionDuration)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(time / transitionDuration);
 
-            float easedT = Mathf.SmoothStep(0f, 1f, t);
+            float easeT = Mathf.SmoothStep(0f, 1f, t);
 
-            _rectTransform.anchoredPosition = Vector2.LerpUnclamped(start, to, easedT);
+            _rectTransform.anchoredPosition = Vector2.LerpUnclamped(start, to, easeT);
             await Task.Yield();
         }
     }

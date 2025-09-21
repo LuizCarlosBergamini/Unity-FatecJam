@@ -13,15 +13,12 @@ public class PauseManager : MonoBehaviour
 
     public FadeUI countdownContainer;
     public TextMeshProUGUI countdownText;
-    /*
-     * Duration in Seconds
-     */
     public int countdownDuration;
 
     public bool isPaused = false;
     
     private bool _disablePause = false;
-    private int _disableDuration = 1;
+    private int _disableDuration = 500; // Milliseconds
 
     void Start()
     {
@@ -37,25 +34,24 @@ public class PauseManager : MonoBehaviour
     {
         if (pauseAction.WasPressedThisFrame() && !_disablePause)
         {
-            isPaused = !isPaused;
-
             if (isPaused)
             {
-                Pause();
+                Unpause();
             }
             else
             {
-                Unpause();
+                Pause();
             }
         }
     }
 
     public async void Pause()
     {
+        isPaused = true;
         _disablePause = true;
         onPause?.Invoke();
         Time.timeScale = 0f;
-        await Task.Delay(_disableDuration * 1000);
+        await Task.Delay(_disableDuration);
         _disablePause = false;
     }
 
@@ -66,7 +62,6 @@ public class PauseManager : MonoBehaviour
 
         if (GameManager.Instance && GameManager.Instance.isMusicPlaying && countdownContainer != null && countdownText != null)
         {
-            //await Task.Delay(250);
             countdownContainer.Show();
             await Task.Delay(250);
 
@@ -80,12 +75,12 @@ public class PauseManager : MonoBehaviour
 
             Time.timeScale = 1f;
             countdownContainer.InstantHide();
-            _disablePause = false;
         } else
         {
             Time.timeScale = 1f;
-            await Task.Delay(_disableDuration * 1000);
-            _disablePause = false;
+            await Task.Delay(_disableDuration);
         }
+        _disablePause = false;
+        isPaused = false;
     }
 }

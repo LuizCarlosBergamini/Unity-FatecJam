@@ -5,7 +5,7 @@ public class NoteSpawner : MonoBehaviour {
     [Header("Configuration")]
     //TO DO: Transform this into public variable to change game velocity/difficulty
     public float lookaheadTime = 4.0f; // How many seconds in advance to spawn notes
-    public GameObject notePrefab;
+    public GameObject[] notePrefab;
     public Transform[] spawnPoints; // One transform for each lane's spawn position
 
     private Beatmap currentBeatmap;
@@ -23,7 +23,7 @@ public class NoteSpawner : MonoBehaviour {
     {
         if (currentBeatmap == null || nextNoteIndex >= currentBeatmap.notes.Count)
         {
-            Debug.Log("currentBeatMap not initialized");
+            //Debug.Log("currentBeatMap not initialized");
             return; // No beatmap loaded or all notes have been spawned
         }
 
@@ -46,8 +46,6 @@ public class NoteSpawner : MonoBehaviour {
 
     private void SpawnNote(NoteData noteData)
     {
-        Debug.Log(noteData.laneIndex);
-        Debug.Log(spawnPoints);
         if (noteData.laneIndex < 0 || noteData.laneIndex >= spawnPoints.Length)
         {
             Debug.LogError("Invalid lane index for note: " + noteData.laneIndex);
@@ -55,11 +53,10 @@ public class NoteSpawner : MonoBehaviour {
         }
 
         Transform spawnPoint = spawnPoints[noteData.laneIndex];
-        GameObject noteObject = Instantiate(notePrefab, spawnPoint.position, Quaternion.identity);
-
-        lanes[noteData.laneIndex].AddNoteToLane(noteObject.GetComponent<NoteMovement>());
+        GameObject noteObject = Instantiate(notePrefab[noteData.laneIndex], spawnPoint.position, Quaternion.identity);
 
         // Initialize the note object with its data
         noteObject.GetComponent<NoteMovement>().Initialize(noteData, lookaheadTime);
+        lanes[noteData.laneIndex].AddNoteToLane(noteObject.GetComponent<NoteMovement>());
     }
 }

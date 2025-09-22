@@ -2519,7 +2519,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 153067569361666348, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Name
-      value: NoteControl (1)
+      value: Note2Keybind
       objectReference: {fileID: 0}
     - target: {fileID: 1047642242128963019, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Pivot.x
@@ -2605,6 +2605,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Nota 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3038382206983902059, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
+      propertyPath: actionReference
+      value: 
+      objectReference: {fileID: 8203278414266063944, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     - target: {fileID: 4878656858464731127, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2673,7 +2677,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 153067569361666348, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Name
-      value: NoteControl (2)
+      value: Note3Keybind
       objectReference: {fileID: 0}
     - target: {fileID: 1047642242128963019, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Pivot.x
@@ -2759,6 +2763,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Nota 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3038382206983902059, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
+      propertyPath: actionReference
+      value: 
+      objectReference: {fileID: -7272874352672539923, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     - target: {fileID: 4878656858464731127, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2827,7 +2835,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 153067569361666348, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Name
-      value: NoteControl (4)
+      value: Note5Keybind
       objectReference: {fileID: 0}
     - target: {fileID: 1047642242128963019, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Pivot.x
@@ -2915,6 +2923,10 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 3038382206983902059, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
+      propertyPath: actionReference
+      value: 
+      objectReference: {fileID: 6069142768648826297, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     - target: {fileID: 4878656858464731127, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2983,7 +2995,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 153067569361666348, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Name
-      value: NoteControl
+      value: Note1Keybind
       objectReference: {fileID: 0}
     - target: {fileID: 1047642242128963019, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Pivot.x
@@ -3065,6 +3077,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3038382206983902059, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
+      propertyPath: actionReference
+      value: 
+      objectReference: {fileID: 3647067232175984750, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     - target: {fileID: 4878656858464731127, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3133,7 +3149,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 153067569361666348, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Name
-      value: NoteControl (3)
+      value: Note4Keybind
       objectReference: {fileID: 0}
     - target: {fileID: 1047642242128963019, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_Pivot.x
@@ -3219,6 +3235,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Nota 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3038382206983902059, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
+      propertyPath: actionReference
+      value: 
+      objectReference: {fileID: 3210049174031090351, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     - target: {fileID: 4878656858464731127, guid: dd4c2e61d3465ba46a30c16157ad6311, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

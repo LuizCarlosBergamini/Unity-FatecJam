@@ -1,9 +1,12 @@
 // Lane.cs
 using UnityEngine;
 using System.Collections.Generic;
+using System;
+using UnityEditor;
 
 public class Lane : MonoBehaviour {
     private Queue<NoteMovement> notesInLane = new Queue<NoteMovement>();
+    public static event Action<Judgment, int> OnNoteJudged;
 
     // Called by NoteSpawner when a note for this lane is created
     public void AddNoteToLane(NoteMovement note)
@@ -16,19 +19,22 @@ public class Lane : MonoBehaviour {
     {
         if (notesInLane.Count > 0)
         {
-            // Get the note at the front of the queue without removing it yet
             NoteMovement upcomingNote = notesInLane.Peek();
-
-            // Calculate the accuracy of the hit
             float accuracy = GetHitAccuracy(upcomingNote);
-            Judgment judgment = JudgeHit(accuracy);
 
-            //// If the hit was valid (not too early)
-            //if (judgment != Judgment.None)
-            //{
-            // Process the hit
-            ProcessHit(upcomingNote, judgment);
-            //}
+            // Only process hits within a reasonable time window
+            // Allow for early hits within -GOOD_WINDOW time
+            if (accuracy > -GOOD_WINDOW)
+            {
+                Judgment judgment = JudgeHit(accuracy);
+                ProcessHit(upcomingNote, judgment);
+                Debug.Log($"Hit processed with accuracy: {accuracy}");
+                OnNoteJudged?.Invoke(judgment, upcomingNote.noteData.laneIndex);
+            }
+            else
+            {
+                Debug.Log($"Hit too early: {accuracy}");
+            }
         }
     }
 
@@ -49,32 +55,65 @@ public class Lane : MonoBehaviour {
 
         // Notify other systems (ScoreManager, FeedbackController)
         // GameEvents.instance.OnNoteJudged(note.noteData.laneIndex, judgment);
-
-        // Destroy the note object
-        Destroy(note.gameObject);
+        if (note != null)
+        {
+            // Destroy the note object
+            Destroy(note.gameObject);
+        }
     }
 
     public enum Judgment { None, Miss, Good, Great, Perfect }
 
     // Timing windows in seconds
-    private const float PERFECT_WINDOW = 0.022f;
-    private const float GREAT_WINDOW = 0.045f;
-    private const float GOOD_WINDOW = 0.090f;
+    private const float PERFECT_WINDOW = 0.032f;
+    private const float GREAT_WINDOW = 0.055f;
+    private const float GOOD_WINDOW = 0.100f;
+
+    void Update()
+    {
+        // Only check for misses if there's a note in the lane.
+        if (notesInLane.Count > 0)
+        {
+            NoteMovement upcomingNote = notesInLane.Peek();
+            float noteTargetTime = (float)(upcomingNote.noteData.timestamp * Conductor.instance.secPerBeat);
+            float songTime = Conductor.instance.songPosition;
+
+            // Check if the note has passed the judgment line by more than the miss threshold.
+            // A note is missed if the current time is past its target time plus the lenient "Good" window.
+            if (songTime > noteTargetTime + GOOD_WINDOW)
+            {
+                // Dequeue the note and process it as a Miss.
+                NoteMovement missedNote = notesInLane.Dequeue();
+                OnNoteJudged?.Invoke(Judgment.Miss, missedNote.noteData.laneIndex);
+                Destroy(missedNote.gameObject);
+            }
+        }
+    }
 
     private Judgment JudgeHit(float accuracy)
     {
         float absAccuracy = Mathf.Abs(accuracy);
 
         if (absAccuracy <= PERFECT_WINDOW)
+        {
+            Debug.Log("Perfect Clicked");
             return Judgment.Perfect;
+        }
         if (absAccuracy <= GREAT_WINDOW)
+        {
+            Debug.Log("Great Clicked");
             return Judgment.Great;
+        }
         if (absAccuracy <= GOOD_WINDOW)
+        {
+            Debug.Log("Good Clicked");
             return Judgment.Good;
+        }
 
         // Note: This implementation doesn't penalize early hits outside the window.
         // A full implementation would need to handle that case, possibly by ignoring the input.
         // For now, we assume any hit outside the 'Good' window is not a valid hit on that note.
+        Debug.Log("Missed");
         return Judgment.Miss; // Or Miss, depending on game rules for early hits
     }
 }

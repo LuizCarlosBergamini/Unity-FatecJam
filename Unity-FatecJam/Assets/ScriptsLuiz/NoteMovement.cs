@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class NoteMovement : MonoBehaviour {
@@ -9,17 +10,17 @@ public class NoteMovement : MonoBehaviour {
     private float travelDuration;
 
     // TODO: Fix this shit code
-    private Vector3 lane1Spawn = new Vector3((float)9.81, (float)1.96, (float)0.06111138);
-    private Vector3 lane2Spawn = new Vector3((float)9.81, (float)0.91, (float)0.06111138);
-    private Vector3 lane3Spawn = new Vector3((float)9.81, (float)-0.08, (float)0.06111138);
-    private Vector3 lane4Spawn = new Vector3((float)9.81, (float)-1.1, (float)0.06111138);
-    private Vector3 lane5Spawn = new Vector3((float)9.81, (float)-2.06, (float)0.06111138);
+    private Vector3 lane1Spawn = new Vector3((float)8, (float)2.75, (float)0.06111138);
+    private Vector3 lane2Spawn = new Vector3((float)8, (float)2.25, (float)0.06111138);
+    private Vector3 lane3Spawn = new Vector3((float)8, (float)1.8, (float)0.06111138);
+    private Vector3 lane4Spawn = new Vector3((float)8, (float)1.30, (float)0.06111138);
+    private Vector3 lane5Spawn = new Vector3((float)8, (float)0.85, (float)0.06111138);
 
-    private Vector3 lane1Target = new Vector3((float)-10.03, (float)1.96, (float)0.06111138);
-    private Vector3 lane2Target = new Vector3((float)-10.03, (float)0.91, (float)0.06111138);
-    private Vector3 lane3Target = new Vector3((float)-10.03, (float)-0.08, (float)0.06111138);
-    private Vector3 lane4Target = new Vector3((float)-10.03, (float)-1.1, (float)0.06111138);
-    private Vector3 lane5Target = new Vector3((float)-10.03, (float)-2.06, (float)0.06111138);
+    private Vector3 lane1Target = new Vector3((float)1.75, (float)2.75, (float)0.06111138);
+    private Vector3 lane2Target = new Vector3((float)1.75, (float)2.25, (float)0.06111138);
+    private Vector3 lane3Target = new Vector3((float)1.75, (float)1.8, (float)0.06111138);
+    private Vector3 lane4Target = new Vector3((float)1.75, (float)1.30, (float)0.06111138);
+    private Vector3 lane5Target = new Vector3((float)1.75, (float)0.85, (float)0.06111138);
     public void Initialize(NoteData data, float lookAheadTime)
     {
         this.noteData = data;
@@ -75,6 +76,7 @@ public class NoteMovement : MonoBehaviour {
             if (lerpT > 1.1f) // A small buffer past the judgment line
             {
                 // Notify game systems of a miss
+                
                 Debug.Log("Missed Note");
                 Destroy(gameObject);
             }

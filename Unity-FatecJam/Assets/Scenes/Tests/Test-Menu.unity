@@ -918,6 +918,7 @@ GameObject:
   m_Component:
   - component: {fileID: 503202131}
   - component: {fileID: 503202130}
+  - component: {fileID: 503202132}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -956,6 +957,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &503202132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503202129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b49dff0f932094408baaf010a90d067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogData: {fileID: 0}
+  typeSpeed: 0.05
+  skipAction:
+    m_Name: Skip
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9cba4328-88fb-476a-81e0-17ed59fa5904
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 282b037b-a1e3-4e8d-a088-200c5ecce5bd
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip
+      m_Flags: 0
+    m_Flags: 0
+  dialogText: {fileID: 0}
+  entityNameText: {fileID: 0}
+  entityIcon: {fileID: 0}
+  onDialogStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onDialogFinish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &776511021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &1192032007
 GameObject:
   m_ObjectHideFlags: 0

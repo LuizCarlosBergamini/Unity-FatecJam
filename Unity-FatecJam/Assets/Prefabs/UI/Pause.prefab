@@ -327,6 +327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &549972313532925530
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +457,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &1697617060149550298
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce46f2986bb3eb4e8d1337f2cc9d5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseAction: {fileID: 8701603826536058023, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   onPause:
     m_PersistentCalls:
       m_Calls:
@@ -1087,6 +1092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &3979844049773186672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,6 +1297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &4661979305878901723
 GameObject:
   m_ObjectHideFlags: 0

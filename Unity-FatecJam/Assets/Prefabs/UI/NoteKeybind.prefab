@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1796395068262741134}
   - component: {fileID: 3038382206983902059}
   m_Layer: 5
-  m_Name: NoteControl
+  m_Name: NoteKeybind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

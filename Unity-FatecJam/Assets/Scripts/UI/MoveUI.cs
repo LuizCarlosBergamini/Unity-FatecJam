@@ -11,7 +11,7 @@ public class MoveUI : MonoBehaviour
 
     private RectTransform _rectTransform = null;
 
-    public void Start()
+    public void OnEnable()
     {
         _rectTransform = GetComponent<RectTransform>();
         Debug.Assert(_rectTransform != null, "RectTransform Component is required to MoveUI Script");

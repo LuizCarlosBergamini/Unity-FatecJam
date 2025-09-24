@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &1210313828232774061
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &1259916584572244812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &5105212955080052007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &6320120899005016957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,6 +2169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleHover: 1.1
+  hoverAudioClip: {fileID: 0}
+  clickAudioClip: {fileID: 0}
 --- !u!1 &8658685713407021545
 GameObject:
   m_ObjectHideFlags: 0

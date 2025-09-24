@@ -2,12 +2,13 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public struct DialogEntity
 {
     public string name;
-    public Material icon;
+    public Sprite icon;
 }
 
 [CreateAssetMenu(fileName = "New Dialog", menuName = "New Dialog")]

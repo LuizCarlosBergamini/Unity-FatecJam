@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.Events;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class DialogManager : MonoBehaviour
     [Header("Referências UI")]
     public TextMeshProUGUI dialogText;
     public TextMeshProUGUI entityNameText;
-    public UnityEngine.UI.Image entityIcon;
+    public Image entityIcon;
 
     [Header("Eventos")]
     public UnityEvent onDialogStart;
@@ -53,6 +54,7 @@ public class DialogManager : MonoBehaviour
 
     public void StartDialog()
     {
+        if (dialogData == null) return;
         onDialogStart?.Invoke();
         currentDialogIndex = 0;
         ShowDialog();
@@ -78,7 +80,7 @@ public class DialogManager : MonoBehaviour
             entityNameText.text = dialog.entity.name;
 
         if (entityIcon != null)
-            entityIcon.material = dialog.entity.icon;
+            entityIcon.sprite = dialog.entity.icon;
 
         TypeText(dialog.text);
     }
@@ -87,17 +89,18 @@ public class DialogManager : MonoBehaviour
     {
         isTyping = true;
         skipRequested = false;
-        dialogText.text = "";
+        dialogText.maxVisibleCharacters = 0;
+        dialogText.text = text;
 
-        foreach (char c in text)
+        for (int i = 0; i < text.Length; i++)
         {
             if (skipRequested)
             {
+                dialogText.maxVisibleCharacters = int.MaxValue;
                 dialogText.text = text;
                 break;
             }
-
-            dialogText.text += c;
+            dialogText.maxVisibleCharacters++;
             await Task.Delay((int)(typeSpeed * 1000));
         }
 

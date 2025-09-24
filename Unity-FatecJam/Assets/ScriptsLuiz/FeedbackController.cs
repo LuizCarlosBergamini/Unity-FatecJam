@@ -17,6 +17,8 @@ public class FeedbackController : MonoBehaviour {
 
     public AudioSource feedbackAudioSource;
 
+    public bool powerUpActive = false;
+
     void Start()
     {
         feedbackAudioSource = GetComponent<AudioSource>();
@@ -26,11 +28,15 @@ public class FeedbackController : MonoBehaviour {
     {
         // Subscribe to game events
         GameEvent.onNoteJudged += OnNoteJudged;
+        GameEvent.onPowerUpUsed += () => { powerUpActive = true; };
+        GameEvent.onPowerUpEnded += () => { powerUpActive = false; };
     }
 
     void OnDisable()
     {
         GameEvent.onNoteJudged -= OnNoteJudged;
+        GameEvent.onPowerUpUsed -= () => { powerUpActive = true; };
+        GameEvent.onPowerUpEnded -= () => { powerUpActive = false; };
     }
 
     private void OnNoteJudged(Judgment judgment, int laneIndex)
@@ -55,6 +61,8 @@ public class FeedbackController : MonoBehaviour {
         //...
 
         int currentCombo = ScoreManager.instance.currentCombo;
+        if (powerUpActive) comboText.color = new Color32(0, 253, 219, 255); // Cyan color when power-up is active
+        else comboText.color = Color.white;
         if (currentCombo > 1)
         {
             comboText.text = currentCombo.ToString() + "x";

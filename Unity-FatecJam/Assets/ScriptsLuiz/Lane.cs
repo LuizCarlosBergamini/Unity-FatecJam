@@ -27,7 +27,6 @@ public class Lane : MonoBehaviour {
             {
                 Judgment judgment = JudgeHit(accuracy);
                 ProcessHit(upcomingNote, judgment);
-                Debug.Log($"Hit processed with accuracy: {accuracy}");
                 GameEvent.instance.OnNoteJudged(judgment, upcomingNote.noteData.laneIndex);
             }
             else
@@ -84,6 +83,7 @@ public class Lane : MonoBehaviour {
                 // Dequeue the note and process it as a Miss.
                 NoteMovement missedNote = notesInLane.Dequeue();
                 GameEvent.instance.OnNoteJudged(Judgment.Miss, missedNote.noteData.laneIndex);
+                PlayerManager.instance.RemoveLife(3);
                 Destroy(missedNote.gameObject);
             }
         }
@@ -95,24 +95,27 @@ public class Lane : MonoBehaviour {
 
         if (absAccuracy <= PERFECT_WINDOW)
         {
-            Debug.Log("Perfect Clicked");
+            PlayerManager.instance.AddLife(3);
+            GameEvent.instance.CountToPowerUp(3);
             return Judgment.Perfect;
         }
         if (absAccuracy <= GREAT_WINDOW)
         {
-            Debug.Log("Great Clicked");
+            PlayerManager.instance.AddLife(2);
+            GameEvent.instance.CountToPowerUp(2);
             return Judgment.Great;
         }
         if (absAccuracy <= GOOD_WINDOW)
         {
-            Debug.Log("Good Clicked");
+            PlayerManager.instance.AddLife(1);
+            GameEvent.instance.CountToPowerUp(1);
             return Judgment.Good;
         }
 
         // Note: This implementation doesn't penalize early hits outside the window.
         // A full implementation would need to handle that case, possibly by ignoring the input.
         // For now, we assume any hit outside the 'Good' window is not a valid hit on that note.
-        Debug.Log("Missed");
+        PlayerManager.instance.RemoveLife(3);
         return Judgment.Miss; // Or Miss, depending on game rules for early hits
     }
 }

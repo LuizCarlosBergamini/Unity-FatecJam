@@ -25,12 +25,12 @@ public class FeedbackController : MonoBehaviour {
     void OnEnable()
     {
         // Subscribe to game events
-        Lane.OnNoteJudged += OnNoteJudged;
+        GameEvent.onNoteJudged += OnNoteJudged;
     }
 
     void OnDisable()
     {
-        Lane.OnNoteJudged -= OnNoteJudged;
+        GameEvent.onNoteJudged -= OnNoteJudged;
     }
 
     private void OnNoteJudged(Judgment judgment, int laneIndex)

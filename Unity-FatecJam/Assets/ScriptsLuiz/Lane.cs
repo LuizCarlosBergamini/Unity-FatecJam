@@ -6,7 +6,6 @@ using UnityEditor;
 
 public class Lane : MonoBehaviour {
     private Queue<NoteMovement> notesInLane = new Queue<NoteMovement>();
-    public static event Action<Judgment, int> OnNoteJudged;
 
     // Called by NoteSpawner when a note for this lane is created
     public void AddNoteToLane(NoteMovement note)
@@ -29,7 +28,7 @@ public class Lane : MonoBehaviour {
                 Judgment judgment = JudgeHit(accuracy);
                 ProcessHit(upcomingNote, judgment);
                 Debug.Log($"Hit processed with accuracy: {accuracy}");
-                OnNoteJudged?.Invoke(judgment, upcomingNote.noteData.laneIndex);
+                GameEvent.instance.OnNoteJudged(judgment, upcomingNote.noteData.laneIndex);
             }
             else
             {
@@ -84,7 +83,7 @@ public class Lane : MonoBehaviour {
             {
                 // Dequeue the note and process it as a Miss.
                 NoteMovement missedNote = notesInLane.Dequeue();
-                OnNoteJudged?.Invoke(Judgment.Miss, missedNote.noteData.laneIndex);
+                GameEvent.instance.OnNoteJudged(Judgment.Miss, missedNote.noteData.laneIndex);
                 Destroy(missedNote.gameObject);
             }
         }

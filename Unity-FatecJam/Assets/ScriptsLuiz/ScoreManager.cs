@@ -4,7 +4,6 @@ using static Lane;
 
 public class ScoreManager : MonoBehaviour {
     public static ScoreManager instance;
-    public static event Action<Judgment, int, int> OnScoreChange;
 
     public int currentScore { get; private set; }
     public int currentCombo { get; private set; }
@@ -29,12 +28,12 @@ public class ScoreManager : MonoBehaviour {
     void OnEnable()
     {
         // Subscribe to the judgment event
-        Lane.OnNoteJudged += OnNoteJudged;
+        GameEvent.onNoteJudged += OnNoteJudged;
     }
 
     void OnDisable()
     {
-        Lane.OnNoteJudged -= OnNoteJudged;
+        GameEvent.onNoteJudged -= OnNoteJudged;
     }
 
     private void OnNoteJudged(Judgment judgment, int laneIndex)
@@ -43,7 +42,6 @@ public class ScoreManager : MonoBehaviour {
         UpdateCombo(judgment, laneIndex);
         UpdateJudgmentCounts(judgment);
         GetCurrentAccuracy();
-        OnScoreChange?.Invoke(judgment, laneIndex, currentCombo);
     }
 
     private void UpdateScore(Judgment judgment, int laneIndex)

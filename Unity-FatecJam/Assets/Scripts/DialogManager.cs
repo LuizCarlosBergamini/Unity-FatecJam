@@ -5,13 +5,16 @@ using TMPro;
 using UnityEngine.Events;
 using System.Threading.Tasks;
 using UnityEngine.UI;
+using UnityEditor.Rendering;
 
 public class DialogManager : MonoBehaviour
 {
     [Header("Configurações")]
     public Dialog_SO dialogData;
-    public float typeSpeed = 0.05f;
     public InputActionReference skipAction;
+    public int typeSpeed = 50;
+    public int clearTypeSpeed = 1;
+    public bool instantClear = false;
 
     [Header("Referências UI")]
     public TextMeshProUGUI dialogText;
@@ -28,6 +31,8 @@ public class DialogManager : MonoBehaviour
 
     private void OnEnable()
     {
+        dialogText.text = "";
+        entityNameText.text = "";
         StartDialog();
         skipAction.action.Enable();
     }
@@ -65,43 +70,72 @@ public class DialogManager : MonoBehaviour
         dialogData = newDialog;
     }
 
-    private void ShowDialog()
+    async private void ShowDialog()
     {
         if (currentDialogIndex >= dialogData.dialogs.Count)
         {
             EndDialog();
             return;
         }
+        if (currentDialogIndex > 0 && !instantClear)
+        {
+            await CleanTypeText();
+        }
 
         var dialog = dialogData.dialogs[currentDialogIndex];
 
-        // Atualiza informações da entidade
-        if (entityNameText != null)
-            entityNameText.text = dialog.entity.name;
 
         if (entityIcon != null)
             entityIcon.sprite = dialog.entity.icon;
 
-        TypeText(dialog.text);
+        TypeText(dialog.text, dialog.entity.name);
     }
 
-    async private void TypeText(string text)
+
+    async private void TypeText(string text, string entityName)
     {
         isTyping = true;
         skipRequested = false;
         dialogText.maxVisibleCharacters = 0;
         dialogText.text = text;
+        entityNameText.maxVisibleCharacters = 0;
+        entityNameText.text = entityName;
 
-        for (int i = 0; i < text.Length; i++)
+        for (int i = 0; i < Mathf.Max(text.Length, entityName.Length); i++)
         {
             if (skipRequested)
             {
                 dialogText.maxVisibleCharacters = int.MaxValue;
-                dialogText.text = text;
+                entityNameText.maxVisibleCharacters = int.MaxValue;
                 break;
             }
             dialogText.maxVisibleCharacters++;
-            await Task.Delay((int)(typeSpeed * 1000));
+            entityNameText.maxVisibleCharacters++;
+            await Task.Delay(typeSpeed);
+        }
+
+        isTyping = false;
+    }
+
+    async private Task CleanTypeText()
+    {
+        isTyping = true;
+        skipRequested = false;
+        int maxVisibleCharacters = Mathf.Max(dialogText.text.Length, entityNameText.text.Length);
+        dialogText.maxVisibleCharacters = maxVisibleCharacters;
+        entityNameText.maxVisibleCharacters = maxVisibleCharacters;
+
+        for (int i = 0; i < maxVisibleCharacters; i++)
+        {
+            if (skipRequested)
+            {
+                dialogText.maxVisibleCharacters = 0;
+                entityNameText.maxVisibleCharacters = 0;
+                break;
+            }
+            dialogText.maxVisibleCharacters--;
+            entityNameText.maxVisibleCharacters--;
+            await Task.Delay(clearTypeSpeed);
         }
 
         isTyping = false;

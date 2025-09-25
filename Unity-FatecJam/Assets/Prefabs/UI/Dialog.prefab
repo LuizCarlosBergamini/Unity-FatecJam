@@ -209,8 +209,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogData: {fileID: 0}
-  typeSpeed: 0.05
   skipAction: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  typeSpeed: 20
+  clearTypeSpeed: 1
+  instantClear: 0
   dialogText: {fileID: 28746974103031612}
   entityNameText: {fileID: 9024561969191534700}
   entityIcon: {fileID: 7582633912119881834}
@@ -224,7 +226,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5000
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

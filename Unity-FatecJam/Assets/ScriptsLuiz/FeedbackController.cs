@@ -6,9 +6,10 @@ using static Lane;
 public class FeedbackController : MonoBehaviour {
     [Header("Hit Feedback Effects")]
     public GameObject[] hitExplosionPrefabs; // One for each judgment type
+    public GameObject[] missEffectPrefebs;
     public AudioClip hitSoundClip; // Corresponding sounds
     public AudioClip missSoundClip;
-    private Transform[] feedbackPositions; // Position for effects in each lane
+    public Transform[] feedbackPositions; // Position for effects in each lane
 
     public TextMeshProUGUI accuracyText;
     public TextMeshProUGUI judgmentText;
@@ -51,7 +52,10 @@ public class FeedbackController : MonoBehaviour {
 
         // Play visual effect
         // NOTE: Use an object pool in a real project instead of Instantiate for performance
+        if (judgment != Judgment.Miss)
         Instantiate(hitExplosionPrefabs[(int)judgment], feedbackPositions[laneIndex].position, Quaternion.identity);
+        if (judgment == Judgment.Miss)
+        Instantiate(missEffectPrefebs[laneIndex], feedbackPositions[laneIndex].position, Quaternion.identity);
 
         // Play sound effect
         //if (judgment != Judgment.Miss)

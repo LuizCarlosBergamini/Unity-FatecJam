@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: e52624f28af9b94489bee2255c52a90d
+guid: a829101474f92674aa5c39a544d8eec8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3346361039123967779
-    second: Nota Roxa_0
+      213: -6481976051128010924
+    second: Nota04_0
+  - first:
+      213: 5888149705411168720
+    second: Nota04_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nota Roxa_0
+      name: Nota04_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 41
-        height: 53
+        x: 54
+        y: 41
+        width: 26
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd01fcc5d565f81d0800000000000000
-      internalID: -3346361039123967779
+      spriteID: 457fceddf156b06a0800000000000000
+      internalID: -6481976051128010924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nota04_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 16
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d98a57d5f8e6b150800000000000000
+      internalID: 5888149705411168720
       vertices: []
       indices: 
       edges: []
@@ -147,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Nota Roxa_0: -3346361039123967779
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nota amarela_0: 7143014021211613328
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

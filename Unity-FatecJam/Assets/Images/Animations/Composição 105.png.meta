@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: e0c4b33be275fa34a8d81ad2604f7459
+guid: e682a66de6a2c5949a8558ef8787c946
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1813517504527734233
-    second: Nota2_0
+      213: -1395505899679893520
+    second: "Composi\xE7\xE3o 105_0"
+  - first:
+      213: -257199960460264575
+    second: "Composi\xE7\xE3o 105_1"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -96,17 +99,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Nota2_0
+      name: "Composi\xE7\xE3o 105_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 41
-        height: 53
+        x: 525
+        y: 656
+        width: 111
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72aeba4207715d6e0800000000000000
-      internalID: -1813517504527734233
+      spriteID: 0f73e9727ca22ace0800000000000000
+      internalID: -1395505899679893520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Composi\xE7\xE3o 105_1"
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 340
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b7588affd3e6cf0800000000000000
+      internalID: -257199960460264575
       vertices: []
       indices: 
       edges: []
@@ -125,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Nota2_0: -1813517504527734233
+      "Composi\xE7\xE3o 105_0": -1395505899679893520
+      "Composi\xE7\xE3o 105_1": -257199960460264575
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

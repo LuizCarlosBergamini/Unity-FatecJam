@@ -9,6 +9,11 @@ public class NoteMovement : MonoBehaviour {
 
     private float travelDuration;
 
+    [Header("Note Sprites")]
+    private SpriteRenderer spriteRenderer;
+    public Sprite defaultNote;
+    public Sprite powerupNote;
+
     // TODO: Fix this shit code
     private Vector3 lane1Spawn = new Vector3((float)8, (float)2.75, (float)0.06111138);
     private Vector3 lane2Spawn = new Vector3((float)8, (float)2.25, (float)0.06111138);
@@ -21,36 +26,55 @@ public class NoteMovement : MonoBehaviour {
     private Vector3 lane3Target = new Vector3((float)1.75, (float)1.8, (float)0.06111138);
     private Vector3 lane4Target = new Vector3((float)1.75, (float)1.30, (float)0.06111138);
     private Vector3 lane5Target = new Vector3((float)1.75, (float)0.85, (float)0.06111138);
+
+    void OnEnable()
+    {
+        // Subscribe to game events
+        GameEvent.onPowerUpUsed += PowerUpUsed;
+        GameEvent.onPowerUpEnded += PowerUpEnded;
+    }
+
+    void OnDisable()
+    {
+        GameEvent.onPowerUpUsed -= PowerUpUsed;
+        GameEvent.onPowerUpEnded -= PowerUpEnded;
+    }
+
     public void Initialize(NoteData data, float lookAheadTime)
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         this.noteData = data;
+
+        if (GameEvent.instance.usingPowerUp) spriteRenderer.sprite = powerupNote;
+        else spriteRenderer.sprite = defaultNote;
+
 
         // TODO: Fix this shit code (maybe with a LaneManager)
         switch (data.laneIndex)
-        {
-            case 0:
-                spawnPoint = lane1Spawn;
-                targetPoint = lane1Target;
-                break;
-            case 1:
-                spawnPoint = lane2Spawn;
-                targetPoint = lane2Target;
-                break;
-            case 2:
-                spawnPoint = lane3Spawn;
-                targetPoint = lane3Target;
-                break;
-            case 3:
-                spawnPoint = lane4Spawn;
-                targetPoint = lane4Target;
-                break;
-            case 4:
-                spawnPoint = lane5Spawn;
-                targetPoint = lane5Target;
-                break;
+            {
+                case 0:
+                    spawnPoint = lane1Spawn;
+                    targetPoint = lane1Target;
+                    break;
+                case 1:
+                    spawnPoint = lane2Spawn;
+                    targetPoint = lane2Target;
+                    break;
+                case 2:
+                    spawnPoint = lane3Spawn;
+                    targetPoint = lane3Target;
+                    break;
+                case 3:
+                    spawnPoint = lane4Spawn;
+                    targetPoint = lane4Target;
+                    break;
+                case 4:
+                    spawnPoint = lane5Spawn;
+                    targetPoint = lane5Target;
+                    break;
 
 
-        }
+            }
 
         // The duration of travel is the lookahead time used by the spawner
         travelDuration = lookAheadTime;
@@ -58,6 +82,8 @@ public class NoteMovement : MonoBehaviour {
 
     void Update()
     {
+        
+
         if (this.noteData != null)
         {
             float songTime = Conductor.instance.songPosition;
@@ -81,5 +107,14 @@ public class NoteMovement : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
+    }
+    private void PowerUpUsed()
+    {
+        spriteRenderer.sprite = powerupNote;
+    }
+
+    private void PowerUpEnded()
+    {
+        spriteRenderer.sprite = defaultNote;
     }
 }

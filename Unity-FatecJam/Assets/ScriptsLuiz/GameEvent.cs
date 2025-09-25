@@ -13,6 +13,7 @@ public class GameEvent : MonoBehaviour
     private int powerUpThreshold = 30;
     private int currentPowerUpCount = 0;
     public bool canUsePowerUp = false;
+    public bool usingPowerUp = false;
 
     private void Awake()
     {
@@ -36,11 +37,13 @@ public class GameEvent : MonoBehaviour
         Debug.LogWarning("Power-up used event triggered");
         onPowerUpUsed?.Invoke();
         canUsePowerUp = false;
+        usingPowerUp = true;
     }
 
     public void OnPowerUpEnded()
     {
         onPowerUpEnded?.Invoke();
+        usingPowerUp = false;
     }
 
     public void CountToPowerUp(int amount)

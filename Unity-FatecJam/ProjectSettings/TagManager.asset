@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Note
   - Miss
+  - Lira
   layers:
   - Default
   - TransparentFX

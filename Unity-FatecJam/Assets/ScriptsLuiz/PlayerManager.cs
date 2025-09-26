@@ -23,7 +23,7 @@ public class PlayerManager : MonoBehaviour
         life -= amount;
         if (life <= 0 )
         {
-            Debug.Log("Game Over!");
+            //Debug.Log("Game Over!");
         }
     }
 

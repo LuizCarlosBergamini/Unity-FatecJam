@@ -12,7 +12,7 @@ public class FadeUI : MonoBehaviour
 
     private CanvasGroup _canvas = null;
 
-    public void Start()
+    public void OnEnable()
     {
         _canvas = GetComponent<CanvasGroup>();
         Debug.Assert(_canvas != null, "CanvasGroup Component is required to FadeUI Script");
@@ -22,10 +22,12 @@ public class FadeUI : MonoBehaviour
     {
         await Task.Delay(delay);
         await _canvas.FadeCanvas(_canvas.alpha, hiddenAlpha, transitionDuration);
+        gameObject.SetActive(false);
     }
 
     public async void Show(int delay = 0)
     {
+        gameObject.SetActive(true);
         await Task.Delay(delay);
         await _canvas.FadeCanvas(_canvas.alpha, visibleAlpha, transitionDuration);
     }

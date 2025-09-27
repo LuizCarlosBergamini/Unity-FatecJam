@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PauseManager : MonoBehaviour
 {
 
-    InputAction pauseAction;
+    public InputActionReference pauseAction;
     public UnityEvent onPause;
     public UnityEvent onUnpause;
 
@@ -20,10 +20,6 @@ public class PauseManager : MonoBehaviour
     private bool _disablePause = false;
     private int _disableDuration = 500; // Milliseconds
 
-    void Start()
-    {
-        pauseAction = InputSystem.actions.FindAction("Pause");
-    }
 
     void Update()
     {
@@ -32,7 +28,7 @@ public class PauseManager : MonoBehaviour
 
     private void HandlePause()
     {
-        if (pauseAction.WasPressedThisFrame() && !_disablePause)
+        if (pauseAction.action.WasPressedThisFrame() && !_disablePause)
         {
             if (isPaused)
             {

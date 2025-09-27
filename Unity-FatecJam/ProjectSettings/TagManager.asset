@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Note
+  - Miss
+  - Lira
+  - Soul
   layers:
   - Default
   - TransparentFX

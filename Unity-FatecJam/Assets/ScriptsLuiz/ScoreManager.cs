@@ -12,6 +12,8 @@ public class ScoreManager : MonoBehaviour {
 
     // Counters for each judgment type for final accuracy calculation
     private int perfects, greats, goods, misses;
+    // flag to know if power-up is active
+    private bool powerUpActive = false;
 
     void Awake()
     {
@@ -29,11 +31,15 @@ public class ScoreManager : MonoBehaviour {
     {
         // Subscribe to the judgment event
         GameEvent.onNoteJudged += OnNoteJudged;
+        GameEvent.onPowerUpUsed += () => { powerUpActive = true; };
+        GameEvent.onPowerUpEnded += () => { powerUpActive = false; };
     }
 
     void OnDisable()
     {
         GameEvent.onNoteJudged -= OnNoteJudged;
+        GameEvent.onPowerUpUsed -= () => { powerUpActive = true; };
+        GameEvent.onPowerUpEnded -= () => { powerUpActive = false; };
     }
 
     private void OnNoteJudged(Judgment judgment, int laneIndex)
@@ -46,17 +52,18 @@ public class ScoreManager : MonoBehaviour {
 
     private void UpdateScore(Judgment judgment, int laneIndex)
     {
+
         int scoreToAdd = 0;
         switch (judgment)
         {
             case Judgment.Perfect:
-                scoreToAdd = 300 * currentCombo;
+                scoreToAdd = (powerUpActive ? 600 : 300) * currentCombo;
                 break;
             case Judgment.Great:
-                scoreToAdd = 200 * currentCombo;
+                scoreToAdd = (powerUpActive ? 400 : 200) * currentCombo;
                 break;
             case Judgment.Good:
-                scoreToAdd = 100 * currentCombo;
+                scoreToAdd = (powerUpActive ? 200 : 100) * currentCombo;
                 break;
             default:
                 scoreToAdd = 0;
@@ -67,10 +74,9 @@ public class ScoreManager : MonoBehaviour {
 
     private void UpdateCombo(Judgment judgment, int laneIndex)
     {
-        
         if (judgment == Judgment.Perfect || judgment == Judgment.Great || judgment == Judgment.Good)
         {
-            currentCombo++;
+            currentCombo = powerUpActive ? currentCombo + 2 : currentCombo + 1;
             if (currentCombo > highestCombo)
             {
                 highestCombo = currentCombo;

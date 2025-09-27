@@ -12,6 +12,7 @@ public class NoteSpawner : MonoBehaviour {
     private int nextNoteIndex = 0;
 
     public Lane[] lanes;
+    
 
     public void Initialize(Beatmap beatmap)
     {

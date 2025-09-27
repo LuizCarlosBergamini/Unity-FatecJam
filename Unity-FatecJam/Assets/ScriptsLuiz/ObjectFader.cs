@@ -1,64 +1,75 @@
-using System.Collections;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class ObjectFader : MonoBehaviour {
-    private Coroutine runningFade = null;
+public class ObjectFader : MonoBehaviour
+{
+    private CancellationTokenSource fadeCancellation;
 
     /// <summary>
     /// Fades the object to a target alpha over a set duration.
     /// </summary>
-    public void FadeTo(float targetAlpha, float duration)
+    public async void FadeTo(float targetAlpha, float duration)
     {
-        // If a fade is already running, stop it
-        if (runningFade != null)
+        // Cancela fade anterior se existir
+        fadeCancellation?.Cancel();
+        fadeCancellation = new CancellationTokenSource();
+
+        try
         {
-            StopCoroutine(runningFade);
+            // Tenta CanvasGroup primeiro
+            CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
+            if (canvasGroup != null)
+            {
+                float startAlpha = canvasGroup.alpha;
+                await FadeLogic(
+                    alpha => canvasGroup.alpha = alpha,
+                    startAlpha,
+                    targetAlpha,
+                    duration,
+                    fadeCancellation.Token
+                );
+                return; // já terminou no CanvasGroup
+            }
+
+            // Fallback: SpriteRenderer
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                Color startColor = spriteRenderer.color;
+                await FadeLogic(
+                    alpha => spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, alpha),
+                    startColor.a,
+                    targetAlpha,
+                    duration,
+                    fadeCancellation.Token
+                );
+            }
         }
-        // Start the new fade and store a reference to it
-        runningFade = StartCoroutine(FadeCoroutine(targetAlpha, duration));
+        catch (TaskCanceledException)
+        {
+            // Se o fade for cancelado, não faz nada
+        }
     }
 
-    private IEnumerator FadeCoroutine(float targetAlpha, float duration)
-    {
-        // Try to get a CanvasGroup first (best for UI)
-        CanvasGroup canvasGroup = GetComponent<CanvasGroup>();
-        if (canvasGroup != null)
-        {
-            float startAlpha = canvasGroup.alpha;
-            yield return FadeLogic(
-                (alpha) => canvasGroup.alpha = alpha,
-                startAlpha,
-                targetAlpha,
-                duration
-            );
-            yield break; // Exit after handling CanvasGroup
-        }
-
-        // Fallback to SpriteRenderer
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            Color startColor = spriteRenderer.color;
-            yield return FadeLogic(
-                (alpha) => spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, alpha),
-                startColor.a,
-                targetAlpha,
-                duration
-            );
-        }
-    }
-
-    // A generic helper to handle the core fade logic (to avoid repeating code)
-    private IEnumerator FadeLogic(System.Action<float> setAlpha, float startAlpha, float targetAlpha, float duration)
+    /// <summary>
+    /// Lógica genérica de fade.
+    /// </summary>
+    private async Task FadeLogic(Action<float> setAlpha, float startAlpha, float targetAlpha, float duration, CancellationToken token)
     {
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
+            token.ThrowIfCancellationRequested();
+
             elapsedTime += Time.deltaTime;
             float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / duration);
             setAlpha(newAlpha);
-            yield return null;
+
+            await Task.Yield(); // espera próximo frame
         }
-        setAlpha(targetAlpha); // Ensure the final alpha is exact
+
+        setAlpha(targetAlpha); // garante o valor final
     }
 }

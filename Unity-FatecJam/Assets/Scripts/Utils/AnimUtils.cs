@@ -54,4 +54,19 @@ public static class AnimUtils
             await Task.Yield();
         }
     }
+
+    public async static Task FadeSprite(this SpriteRenderer sprite, float from, float to, float duration)
+    {
+        if (sprite == null) return;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(time / duration);
+
+            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(from, to, t));
+            await Task.Yield();
+        }
+    }
 }

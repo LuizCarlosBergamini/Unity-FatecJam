@@ -36,7 +36,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -135,6 +135,15 @@
                     "name": "Lane5",
                     "type": "Button",
                     "id": "1abb0d1d-9041-4a97-91b8-ec95f71cecd0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interagir",
+                    "type": "Button",
+                    "id": "6cf420ca-0ef4-4358-86cd-0efcf2e169ae",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -601,6 +610,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Lane5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ae81fd3-0f2e-45dd-8e71-36fec76e8ded",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interagir",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -66,7 +66,7 @@ public class FeedbackController : MonoBehaviour {
         // Update UI Text
         judgmentText.text = judgment.ToString().ToUpper() + "!";
         accuracyText.text = ScoreManager.instance.accuracyRate.ToString("F2") + "%";
-        scoreText.text = "Score: " + ScoreManager.instance.currentScore.ToString();
+        scoreText.text = "Score " + ScoreManager.instance.currentScore.ToString();
         // Animate the text (e.g., pop in and fade out)
         //...
 

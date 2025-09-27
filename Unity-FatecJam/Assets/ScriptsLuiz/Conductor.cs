@@ -1,20 +1,18 @@
 using UnityEngine;
 
-public class Conductor : MonoBehaviour {
-    // Singleton instance to ensure only one Conductor exists
+public class Conductor : MonoBehaviour
+{
     public static Conductor instance;
 
-
     public float bpm;
-    public float songStartOffset; // Any initial delay in the audio file
-
+    public float songStartOffset; // Qualquer atraso inicial no áudio
 
     public AudioSource musicSource;
 
-    // The precise time the song started, according to the audio engine's clock
-    private double dspSongTime;
+    private double dspSongTime;       // Tempo real em que a música começou
+    private double pauseStartTime;    // Momento em que o pause começou
+    private double totalPauseDuration; // Soma de todos os períodos em pausa
 
-    // Calculated properties
     public float secPerBeat { get; private set; }
     public float songPosition { get; private set; }
     public float songPositionInBeats { get; private set; }
@@ -33,28 +31,39 @@ public class Conductor : MonoBehaviour {
 
     void Start()
     {
-        // Calculate the duration of a single beat in seconds
         secPerBeat = 60f / bpm;
     }
 
     public void StartSong()
     {
-        // Record the precise start time from the audio engine's clock
         dspSongTime = AudioSettings.dspTime;
-
-        // Start playing the music
+        totalPauseDuration = 0;
         musicSource.Play();
+    }
+
+    public void Pause()
+    {
+        if (!musicSource.isPlaying) return;
+
+        musicSource.Pause();
+        pauseStartTime = AudioSettings.dspTime; // Marca quando pausou
+    }
+
+    public void Unpause()
+    {
+        if (musicSource.isPlaying) return;
+
+        musicSource.UnPause();
+        // Soma ao total o tempo que ficou pausado
+        totalPauseDuration += AudioSettings.dspTime - pauseStartTime;
     }
 
     void Update()
     {
         if (!musicSource.isPlaying) return;
 
-        // Calculate the current song position in seconds
-        // This is the core of the timing engine: current DSP time minus the start time
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) - songStartOffset;
-
-        // Calculate the current song position in beats
+        // Ajuste: desconta o tempo total de pause
+        songPosition = (float)((AudioSettings.dspTime - dspSongTime) - totalPauseDuration - songStartOffset);
         songPositionInBeats = songPosition / secPerBeat;
     }
 }

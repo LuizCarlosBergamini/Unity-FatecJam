@@ -1,4 +1,5 @@
 // GameManager.cs
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,11 +16,11 @@ public class GameManagerLuiz : MonoBehaviour {
     public GameObject Lira;
 
     // Define the time boundaries for each stage in seconds
-    private const float STAGE1_END = 1f;      // 1:55
-    private const float STAGE2_START = 2f;    // 2:14
-    private const float STAGE2_END = 3f;      // 3:31
-    private const float STAGE3_START = 4f;    // 3:50
-    private const float STAGE3_END = 5f;      // 5:07
+    private const float STAGE1_END = 115f;      // 1:55
+    private const float STAGE2_START = 134f;    // 2:14
+    private const float STAGE2_END = 211f;      // 3:31
+    private const float STAGE3_START = 230f;    // 3:50
+    private const float STAGE3_END = 307f;      // 5:07
 
     // A property to track the current stage
     public GameStage CurrentStage { get; private set; }
@@ -60,7 +61,7 @@ public class GameManagerLuiz : MonoBehaviour {
 
         // In a real game, you would wait for player input or a countdown to start.
         // For this example, we start immediately.
-        StartGameplay();
+        //StartGameplay();
     }
 
     public void StartGameplay()

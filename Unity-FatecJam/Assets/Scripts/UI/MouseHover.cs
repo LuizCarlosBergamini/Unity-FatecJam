@@ -36,6 +36,8 @@ public class MouseHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             if (_audioSource != null && clickAudioClip != null)
             {
                 RandomizeAudioSettings();
+                //_audioSource.pitch = 0.6f;
+                //_audioSource.volume = 1f;
                 _audioSource.PlayOneShot(clickAudioClip);
             }
         }
@@ -77,7 +79,7 @@ public class MouseHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (_audioSource != null)
         {
             _audioSource.pitch = Random.Range(0.0f, 1.0f) * .4f + 0.8f;
-            _audioSource.volume = Random.Range(0.0f, 1.0f) * .4f + 0.8f;
+            _audioSource.volume = Random.Range(0.0f, 1.0f) * .4f + 0.3f;
         }
     }
 }

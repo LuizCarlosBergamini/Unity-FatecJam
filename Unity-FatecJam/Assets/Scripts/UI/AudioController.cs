@@ -11,7 +11,7 @@ public class AudioController : MonoBehaviour
 
     private Slider slider = null;
 
-    private bool HasAudioMixer () => GameManager.Instance && GameManager.Instance.audioMixer != null && slider != null;
+    private bool HasAudioMixer () => GameEvent.instance && GameEvent.instance.audioMixer != null && slider != null;
 
     public void Start()
     {
@@ -24,7 +24,7 @@ public class AudioController : MonoBehaviour
         {
             slider.onValueChanged.AddListener(SetVolume);
             float currentVolume;
-            GameManager.Instance.audioMixer.GetFloat("Volume", out currentVolume);
+            GameEvent.instance.audioMixer.GetFloat("Volume", out currentVolume);
             slider.value = Mathf.Pow(10, currentVolume / 20);
         }
     }
@@ -35,7 +35,7 @@ public class AudioController : MonoBehaviour
         if (HasAudioMixer() && _currentVolume != newVolume)
         {
             _currentVolume = newVolume;
-            GameManager.Instance.audioMixer.SetFloat("Volume", newVolume > 0 ? Mathf.Log10(volume) * 20 : -80);
+            GameEvent.instance.audioMixer.SetFloat("Volume", newVolume > 0 ? Mathf.Log10(volume) * 20 : -80);
         }
     }
 }

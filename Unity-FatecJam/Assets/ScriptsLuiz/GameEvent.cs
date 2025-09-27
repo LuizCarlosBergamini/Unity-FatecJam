@@ -1,6 +1,7 @@
 using System;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using static Lane;
 
@@ -15,6 +16,11 @@ public class GameEvent : MonoBehaviour
     private int currentPowerUpCount = 0;
     public bool canUsePowerUp = false;
     public bool usingPowerUp = false;
+
+    public bool isPaused = false;
+    public bool isStarted = false;
+
+    public AudioMixer audioMixer = null;
 
     [Header("UI")]
     public Slider slider;
@@ -68,5 +74,15 @@ public class GameEvent : MonoBehaviour
             canUsePowerUp = true;
             currentPowerUpCount = 0;
         }
+    }
+
+    public void SetPause(bool pause)
+    {
+        isPaused = pause;
+    }
+
+    public void SetStart(bool start)
+    {
+        isStarted = start;
     }
 }

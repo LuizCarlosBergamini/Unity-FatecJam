@@ -37,4 +37,21 @@ public static class AnimUtils
             await Task.Yield();
         }
     }
+
+    public async static Task MoveAnchor(this Transform transform, Vector2 from, Vector2 to, float duration)
+    {
+        if (transform == null) return;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(time / duration);
+
+            float easeT = Mathf.SmoothStep(0f, 1f, t);
+
+            transform.position = Vector2.LerpUnclamped(from, to, easeT);
+            await Task.Yield();
+        }
+    }
 }

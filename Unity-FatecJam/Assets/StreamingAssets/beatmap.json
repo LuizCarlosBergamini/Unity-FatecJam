@@ -4,280 +4,60 @@
     "bpm": 240.0,
     "notes": [
         {
-            "timestamp": 17.42222023010254,
+            "timestamp": 19.093334197998048,
             "laneIndex": 0
         },
         {
-            "timestamp": 18.382221221923829,
+            "timestamp": 20.031999588012697,
             "laneIndex": 1
         },
         {
-            "timestamp": 19.324443817138673,
+            "timestamp": 21.077333450317384,
             "laneIndex": 2
         },
         {
-            "timestamp": 20.24888801574707,
+            "timestamp": 21.866666793823243,
             "laneIndex": 3
         },
         {
-            "timestamp": 23.23555564880371,
+            "timestamp": 30.549333572387697,
             "laneIndex": 4
         },
         {
-            "timestamp": 23.715553283691408,
+            "timestamp": 31.14666748046875,
             "laneIndex": 3
         },
         {
-            "timestamp": 24.231109619140626,
+            "timestamp": 31.722665786743165,
             "laneIndex": 2
         },
         {
-            "timestamp": 27.25333023071289,
+            "timestamp": 32.512001037597659,
             "laneIndex": 0
         },
         {
-            "timestamp": 27.662221908569337,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 28.284442901611329,
+            "timestamp": 33.13066482543945,
             "laneIndex": 2
         },
         {
-            "timestamp": 30.43555450439453,
+            "timestamp": 33.49333190917969,
+            "laneIndex": 1
+        },
+        {
+            "timestamp": 33.87733459472656,
+            "laneIndex": 3
+        },
+        {
+            "timestamp": 34.28266525268555,
+            "laneIndex": 0
+        },
+        {
+            "timestamp": 34.75199890136719,
+            "laneIndex": 3
+        },
+        {
+            "timestamp": 34.75199890136719,
             "laneIndex": 4
-        },
-        {
-            "timestamp": 30.471111297607423,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 32.30221939086914,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 34.23999786376953,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 35.182220458984378,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 36.24888610839844,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 39.28888702392578,
-            "laneIndex": 4
-        },
-        {
-            "timestamp": 39.7511100769043,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 40.21333312988281,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 41.35110855102539,
-            "laneIndex": 4
-        },
-        {
-            "timestamp": 41.4577751159668,
-            "laneIndex": 4
-        },
-        {
-            "timestamp": 42.27555465698242,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 43.2177734375,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 44.24888610839844,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 46.25777816772461,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 46.986663818359378,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 47.537776947021487,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 48.21332931518555,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 51.6622200012207,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 51.94666290283203,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 52.30221939086914,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 54.39999771118164,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 55.288883209228519,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 56.28444290161133,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 57.279998779296878,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 58.275550842285159,
-            "laneIndex": 4
-        },
-        {
-            "timestamp": 59.23554992675781,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 59.6622200012207,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 60.15999984741211,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 63.60888671875,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 63.964439392089847,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 64.37332916259766,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 67.09333038330078,
-            "laneIndex": 4
-        },
-        {
-            "timestamp": 67.53777313232422,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 67.9111099243164,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 68.33777618408203,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 71.53778076171875,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 71.87554931640625,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 72.33777618408203,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 75.60888671875,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 76.46221923828125,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 79.7155532836914,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 80.14221954345703,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 80.67555236816406,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 82.25777435302735,
-            "laneIndex": 4
-        },
-        {
-            "timestamp": 82.63111114501953,
-            "laneIndex": 4
-        },
-        {
-            "timestamp": 83.48444366455078,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 83.89332580566406,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 84.3377685546875,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 86.73777770996094,
-            "laneIndex": 0
-        },
-        {
-            "timestamp": 87.5022201538086,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 88.05332946777344,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 88.49777221679688,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 90.54222106933594,
-            "laneIndex": 4
-        },
-        {
-            "timestamp": 91.19999694824219,
-            "laneIndex": 3
-        },
-        {
-            "timestamp": 91.60888671875,
-            "laneIndex": 2
-        },
-        {
-            "timestamp": 92.14221954345703,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 94.34666442871094,
-            "laneIndex": 1
-        },
-        {
-            "timestamp": 96.3377685546875,
-            "laneIndex": 0
         }
     ]
 }

@@ -15,11 +15,11 @@ public class GameManagerLuiz : MonoBehaviour {
     public GameObject Lira;
 
     // Define the time boundaries for each stage in seconds
-    private const float STAGE1_END = 115f;      // 1:55
-    private const float STAGE2_START = 130f;    // 2:14
-    private const float STAGE2_END = 211f;      // 3:31
-    private const float STAGE3_START = 226f;    // 3:50
-    private const float STAGE3_END = 307f;      // 5:07
+    private const float STAGE1_END = 1f;      // 1:55
+    private const float STAGE2_START = 2f;    // 2:14
+    private const float STAGE2_END = 3f;      // 3:31
+    private const float STAGE3_START = 4f;    // 3:50
+    private const float STAGE3_END = 5f;      // 5:07
 
     // A property to track the current stage
     public GameStage CurrentStage { get; private set; }
@@ -97,7 +97,7 @@ public class GameManagerLuiz : MonoBehaviour {
             {
                 Debug.LogError("Stage changed from " + CurrentStage + " to " + newStage);
                 CurrentStage = newStage;
-                OnStageChanged(CurrentStage);
+                //OnStageChanged(CurrentStage);
             }
         }
     }
@@ -136,32 +136,35 @@ public class GameManagerLuiz : MonoBehaviour {
         {
             case GameStage.Stage1:
                 // Your logic for Stage 1
-                Lira.GetComponent<ObjectFader>().FadeIn(2f);
+                Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
+                Lane.damageOnMiss = 7;
                 break;
 
             case GameStage.TransitionTo2:
                 // Your logic for the transition
-                Lira.GetComponent<ObjectFader>().FadeOut(2f);
+                Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
                 break;
 
             case GameStage.Stage2:
                 // Your logic for Stage 2
-                Lira.GetComponent<ObjectFader>().FadeIn(2f);
+                Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
+                Lane.damageOnMiss = 12;
                 break;
 
             case GameStage.TransitionTo3:
                 // Your logic for the next transition
-                Lira.GetComponent<ObjectFader>().FadeOut(2f);
+                Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
                 break;
 
             case GameStage.Stage3:
                 // Your logic for Stage 3
-                Lira.GetComponent<ObjectFader>().FadeIn(2f);
+                Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
+                Lane.damageOnMiss = 17;
                 break;
 
             case GameStage.Finished:
                 // Your logic for when the song is over
-                Lira.GetComponent<ObjectFader>().FadeOut(2f);
+                Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
                 break;
         }
     }

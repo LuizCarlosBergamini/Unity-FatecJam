@@ -8,6 +8,6 @@ public class NoteEffectAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.Play("NoteEffectAnimation");
         // Destroy the effect after its duration
-        Destroy(gameObject, gameObject.CompareTag("Miss") ? 0.21f : 0.11f); // Adjust the time as needed
+        Destroy(gameObject, gameObject.CompareTag("Miss") ? 0.21f : 0.11f);
     }
 }

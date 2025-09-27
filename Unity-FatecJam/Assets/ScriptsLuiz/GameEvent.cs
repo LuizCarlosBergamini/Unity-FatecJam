@@ -1,6 +1,7 @@
 using System;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.UI;
 using static Lane;
 
 public class GameEvent : MonoBehaviour
@@ -10,10 +11,13 @@ public class GameEvent : MonoBehaviour
     public static event Action onPowerUpUsed;
     public static event Action onPowerUpEnded;
 
-    private int powerUpThreshold = 30;
+    private int powerUpThreshold = 100;
     private int currentPowerUpCount = 0;
     public bool canUsePowerUp = false;
     public bool usingPowerUp = false;
+
+    [Header("UI")]
+    public Slider slider;
 
     private void Awake()
     {
@@ -27,6 +31,12 @@ public class GameEvent : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        slider.maxValue = powerUpThreshold;
+        slider.value = currentPowerUpCount;
+    }
+
     public void OnNoteJudged(Judgment judgment, int laneIndex)
     {
         onNoteJudged?.Invoke(judgment, laneIndex);
@@ -38,6 +48,7 @@ public class GameEvent : MonoBehaviour
         onPowerUpUsed?.Invoke();
         canUsePowerUp = false;
         usingPowerUp = true;
+        slider.value = currentPowerUpCount;
     }
 
     public void OnPowerUpEnded()
@@ -50,6 +61,7 @@ public class GameEvent : MonoBehaviour
     {
         if (canUsePowerUp) return;
         currentPowerUpCount += amount;
+        slider.value = currentPowerUpCount;
         if (currentPowerUpCount >= powerUpThreshold)
         {
             Debug.Log("Power-up is now available!");

@@ -6,6 +6,7 @@ using UnityEditor;
 
 public class Lane : MonoBehaviour {
     private Queue<NoteMovement> notesInLane = new Queue<NoteMovement>();
+    public static int damageOnMiss = 7;
 
     // Called by NoteSpawner when a note for this lane is created
     public void AddNoteToLane(NoteMovement note)
@@ -83,7 +84,7 @@ public class Lane : MonoBehaviour {
                 // Dequeue the note and process it as a Miss.
                 NoteMovement missedNote = notesInLane.Dequeue();
                 GameEvent.instance.OnNoteJudged(Judgment.Miss, missedNote.noteData.laneIndex);
-                PlayerManager.instance.RemoveLife(3);
+                PlayerManager.instance.RemoveLife(damageOnMiss);
                 Destroy(missedNote.gameObject);
             }
         }
@@ -95,27 +96,38 @@ public class Lane : MonoBehaviour {
 
         if (absAccuracy <= PERFECT_WINDOW)
         {
-            PlayerManager.instance.AddLife(3);
-            GameEvent.instance.CountToPowerUp(3);
+            if (GameEvent.instance.usingPowerUp) PlayerManager.instance.AddLife(10);
+            else
+            {
+                PlayerManager.instance.AddLife(7);
+                GameEvent.instance.CountToPowerUp(3);
+            }
             return Judgment.Perfect;
         }
         if (absAccuracy <= GREAT_WINDOW)
         {
-            PlayerManager.instance.AddLife(2);
-            GameEvent.instance.CountToPowerUp(2);
+            if (GameEvent.instance.usingPowerUp) PlayerManager.instance.AddLife(9);
+            else {
+                PlayerManager.instance.AddLife(6);
+                GameEvent.instance.CountToPowerUp(2);
+            }
             return Judgment.Great;
         }
         if (absAccuracy <= GOOD_WINDOW)
         {
-            PlayerManager.instance.AddLife(1);
-            GameEvent.instance.CountToPowerUp(1);
+            if (GameEvent.instance.usingPowerUp) PlayerManager.instance.AddLife(8);
+            else
+            {
+                PlayerManager.instance.AddLife(5);
+                GameEvent.instance.CountToPowerUp(1);
+            }
             return Judgment.Good;
         }
 
         // Note: This implementation doesn't penalize early hits outside the window.
         // A full implementation would need to handle that case, possibly by ignoring the input.
         // For now, we assume any hit outside the 'Good' window is not a valid hit on that note.
-        PlayerManager.instance.RemoveLife(3);
+        PlayerManager.instance.RemoveLife(damageOnMiss);
         return Judgment.Miss; // Or Miss, depending on game rules for early hits
     }
 }

@@ -21,6 +21,7 @@ public class Dialog_SO : ScriptableObject
     {
         public DialogEntity entity;
         public string text;
+        public float duration;
     }
 
     public List<DialogEntity> entities = new();

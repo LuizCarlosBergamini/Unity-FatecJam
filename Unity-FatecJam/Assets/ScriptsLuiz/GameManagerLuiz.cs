@@ -1,6 +1,7 @@
 // GameManager.cs
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public enum GameStage {
@@ -14,32 +15,50 @@ public enum GameStage {
 
 public class GameManagerLuiz : MonoBehaviour {
     public GameObject Lira;
+    public static GameManagerLuiz instance;
 
     // Define the time boundaries for each stage in seconds
-    private const float STAGE1_END = 115f;      // 1:55
-    private const float STAGE2_START = 134f;    // 2:14
-    private const float STAGE2_END = 211f;      // 3:31
-    private const float STAGE3_START = 230f;    // 3:50
-    private const float STAGE3_END = 307f;      // 5:07
+    private const float STAGE1_END = 10f;      // 1:55 -- 115f
+    private const float STAGE2_START = 134f;    // 2:14 -- 134f
+    private const float STAGE2_END = 211f;      // 3:31 -- 211f
+    private const float STAGE3_START = 230f;    // 3:50 -- 230f
+    private const float STAGE3_END = 307f;      // 5:07 -- 307f
 
     // A property to track the current stage
     public GameStage CurrentStage { get; private set; }
 
     public Conductor conductor;
     public NoteSpawner noteSpawner;
-    //private ScoreManager scoreManager;
-    //... other managers
 
+    [SerializeField] private UnityEvent OnStage1;
+    [SerializeField] private UnityEvent OnTransitionTo2;
+    [SerializeField] private UnityEvent OnStage2;
+    [SerializeField] private UnityEvent OnTransitionTo3;
+    [SerializeField] private UnityEvent OnStage3;
+    [SerializeField] private UnityEvent OnFinish;
 
     private string beatmapFileName = "beatmap.json";
 
     public enum GameState { Ready, Playing, Finished }
     public GameState currentState { get; private set; }
 
+    public bool isPaused = false;
+    public bool isStarted = false;
+    public bool inCutscene = false;
+
     private Beatmap loadedBeatmap;
 
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         Debug.Log("Lira: " + Lira);
         // 1. Load Data
         string filePath = Application.streamingAssetsPath + "/" + beatmapFileName;
@@ -68,6 +87,7 @@ public class GameManagerLuiz : MonoBehaviour {
     {
         if (currentState == GameState.Ready)
         {
+            isStarted = true;
             conductor.StartSong();
             currentState = GameState.Playing;
             // Set the initial stage
@@ -98,7 +118,7 @@ public class GameManagerLuiz : MonoBehaviour {
             {
                 Debug.LogError("Stage changed from " + CurrentStage + " to " + newStage);
                 CurrentStage = newStage;
-                //OnStageChanged(CurrentStage);
+                OnStageChanged(CurrentStage);
             }
         }
     }
@@ -131,41 +151,49 @@ public class GameManagerLuiz : MonoBehaviour {
     private void OnStageChanged(GameStage newStage)
     {
         Debug.Log("New Stage: " + newStage);
-
+        inCutscene = false;
         // Use a switch statement to run your game logic for each stage
         switch (newStage)
         {
             case GameStage.Stage1:
                 // Your logic for Stage 1
-                Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
+                // Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
                 Lane.damageOnMiss = 7;
+                OnStage1?.Invoke();
                 break;
 
             case GameStage.TransitionTo2:
+                inCutscene = true;
                 // Your logic for the transition
-                Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
+                // Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
+                OnTransitionTo2?.Invoke();
                 break;
 
             case GameStage.Stage2:
                 // Your logic for Stage 2
-                Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
+                // Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
                 Lane.damageOnMiss = 12;
+                OnStage2?.Invoke();
                 break;
 
             case GameStage.TransitionTo3:
+                inCutscene = true;
                 // Your logic for the next transition
-                Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
+                // Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
+                OnTransitionTo3?.Invoke();
                 break;
 
             case GameStage.Stage3:
                 // Your logic for Stage 3
-                Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
+                // Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
                 Lane.damageOnMiss = 17;
+                OnStage3?.Invoke();
                 break;
 
             case GameStage.Finished:
                 // Your logic for when the song is over
-                Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
+                // Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
+                OnFinish?.Invoke();
                 break;
         }
     }

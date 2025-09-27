@@ -78,8 +78,11 @@ public class PlayerManager : MonoBehaviour {
         // Fade all souls to the calculated target alpha
         foreach (GameObject soul in souls)
         {
-            // We can simplify the call since FadeIn and FadeOut do the same thing
-            soul.GetComponent<ObjectFader>().FadeTo(targetAlpha, 0.5f);
+            if (soul.activeInHierarchy)
+            {
+                // We can simplify the call since FadeIn and FadeOut do the same thing
+                soul.GetComponent<ObjectFader>().FadeTo(targetAlpha, 0.5f);
+            }
         }
     }
 }

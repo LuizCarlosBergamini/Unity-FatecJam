@@ -15,17 +15,17 @@ public class FadeSprite : MonoBehaviour
         Debug.Assert(_sprite != null, "Sprite Component is required to Fade Script");
     }
 
-    public async void Hide(int delay = 0)
+    public async void Hide(float delay = 0f)
     {
-        await Task.Delay(delay);
-        await _sprite.FadeSprite(_sprite.color.a, hiddenAlpha, transitionDuration);
+        await Task.Delay((int)(delay * 1000f));
+        await _sprite.FadeSpriteAsync(_sprite.color.a, hiddenAlpha, transitionDuration);
         gameObject.SetActive(false);
     }
 
-    public async void Show(int delay = 0)
+    public async void Show(float delay = 0f)
     {
         gameObject.SetActive(true);
-        await Task.Delay(delay);
-        await _sprite.FadeSprite(_sprite.color.a, visibleAlpha, transitionDuration);
+        await Task.Delay((int)(delay * 1000f));
+        await _sprite.FadeSpriteAsync(_sprite.color.a, visibleAlpha, transitionDuration);
     }
 }

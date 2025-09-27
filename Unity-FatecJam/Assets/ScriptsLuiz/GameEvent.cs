@@ -17,9 +17,6 @@ public class GameEvent : MonoBehaviour
     public bool canUsePowerUp = false;
     public bool usingPowerUp = false;
 
-    public bool isPaused = false;
-    public bool isStarted = false;
-
     public AudioMixer audioMixer = null;
 
     [Header("UI")]
@@ -74,15 +71,5 @@ public class GameEvent : MonoBehaviour
             canUsePowerUp = true;
             currentPowerUpCount = 0;
         }
-    }
-
-    public void SetPause(bool pause)
-    {
-        isPaused = pause;
-    }
-
-    public void SetStart(bool start)
-    {
-        isStarted = start;
     }
 }

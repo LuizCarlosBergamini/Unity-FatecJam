@@ -50,6 +50,7 @@ public class Dialog_SOEditor : Editor
             SerializedProperty dialogProp = dialogsProp.GetArrayElementAtIndex(i);
             SerializedProperty entityProp = dialogProp.FindPropertyRelative("entity");
             SerializedProperty textProp = dialogProp.FindPropertyRelative("text");
+            SerializedProperty durationProp = dialogProp.FindPropertyRelative("duration");
 
             SerializedProperty dialogEntityName = entityProp.FindPropertyRelative("name");
             SerializedProperty dialogEntityIcon = entityProp.FindPropertyRelative("icon");
@@ -73,6 +74,7 @@ public class Dialog_SOEditor : Editor
             }
 
             textProp.stringValue = EditorGUILayout.TextArea(textProp.stringValue, GUILayout.MinHeight(60));
+            durationProp.floatValue = EditorGUILayout.FloatField(durationProp.floatValue);
 
             if (GUILayout.Button("Remove Dialog"))
             {

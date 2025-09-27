@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
     public int countdownDuration;
 
     public bool isPaused = false;
-    
+
     private bool _disablePause = false;
     private int _disableDuration = 500; // Milliseconds
 
@@ -43,12 +43,12 @@ public class PauseManager : MonoBehaviour
 
     public async void Pause()
     {
-        if (GameEvent.instance && !GameEvent.instance.isStarted) return;
+        if (GameManagerLuiz.instance && !GameManagerLuiz.instance.isStarted) return;
         isPaused = true;
         _disablePause = true;
         onPause?.Invoke();
         Time.timeScale = 0f;
-        GameEvent.instance.SetPause(true);
+        GameManagerLuiz.instance.isPaused = true;
         Conductor.instance.Pause();
         await Task.Delay(_disableDuration);
         _disablePause = false;
@@ -59,7 +59,7 @@ public class PauseManager : MonoBehaviour
         _disablePause = true;
         onUnpause?.Invoke();
 
-        if (GameEvent.instance && GameEvent.instance.isStarted && countdownContainer != null && countdownText != null)
+        if (GameManagerLuiz.instance && GameManagerLuiz.instance.isStarted && countdownContainer != null && countdownText != null)
         {
             countdownContainer.Show();
             await Task.Delay(250);
@@ -72,15 +72,15 @@ public class PauseManager : MonoBehaviour
                 await Task.Delay(1000);
             }
 
-            GameEvent.instance.SetPause(false);
+            GameManagerLuiz.instance.isPaused = false;
             Conductor.instance.Unpause();
             Time.timeScale = 1f;
             countdownContainer.InstantHide();
         } else
         {
-            if (GameEvent.instance)
+            if (GameManagerLuiz.instance)
             {
-                GameEvent.instance.SetPause(false);
+                GameManagerLuiz.instance.isPaused = false;
                 Conductor.instance.Unpause();
             }
             Time.timeScale = 1f;

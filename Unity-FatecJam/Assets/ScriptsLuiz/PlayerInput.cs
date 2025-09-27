@@ -26,7 +26,7 @@ public class PlayerInput : MonoBehaviour {
 
     void Update()
     {
-        if (GameEvent.instance != null && (GameEvent.instance.isPaused || !GameEvent.instance.isStarted)) return;
+        if (GameManagerLuiz.instance != null && (GameManagerLuiz.instance.isPaused || !GameManagerLuiz.instance.isStarted || GameManagerLuiz.instance.inCutscene)) return;
 
         for (int i = 0; i < lanes.Length; i++)
         {

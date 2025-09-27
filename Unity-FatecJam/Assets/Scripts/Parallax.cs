@@ -1,40 +1,49 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
 public struct ParallaxItem
 {
-    public SpriteRenderer texture;
+    public SpriteRenderer prefab; // referência ao GameObject base
     public float velocity;
-    public float zIndex;
+    public int qtdPerParalax; // quantidade específica por item
 }
 
 public class Parallax : MonoBehaviour
 {
-    [SerializeField] private float velocityMultiplier = 1f;
-    [SerializeField] private int qtdPerParalax = 3;
+    [SerializeField] public float velocityMultiplier = 1f;
     [SerializeField] public List<ParallaxItem> parallaxList = new List<ParallaxItem>();
+    public float transitionDuration = 5f;
+    public float stopDuration = 3f;
 
+    // Armazena os clones gerados
     private Dictionary<ParallaxItem, List<Transform>> clones = new Dictionary<ParallaxItem, List<Transform>>();
 
     private void Start()
     {
         foreach (var item in parallaxList)
         {
+            if (item.prefab == null) continue;
+
             var list = new List<Transform>();
-            float spriteWidth = item.texture.bounds.size.x;
 
-            item.texture.gameObject.SetActive(false);
+            float spriteWidth = item.prefab.bounds.size.x;
 
-            for (int i = 0; i < qtdPerParalax; i++)
+            item.prefab.gameObject.SetActive(false); // desliga o prefab original
+
+            for (int i = 0; i < item.qtdPerParalax; i++)
             {
-                SpriteRenderer clone = Instantiate(item.texture, transform);
-                clone.gameObject.SetActive(true);
-                clone.transform.position = new Vector3(i * spriteWidth, item.texture.transform.position.y, item.zIndex);
-                clone.transform.localScale = item.texture.transform.localScale;
+                GameObject cloneObj = Instantiate(item.prefab.gameObject, transform);
+                cloneObj.SetActive(true);
 
-                list.Add(clone.transform);
+                Transform cloneT = cloneObj.transform;
+                cloneT.position = new Vector3(i * spriteWidth, item.prefab.transform.position.y, item.prefab.transform.position.z);
+                cloneT.localScale = item.prefab.transform.localScale;
+
+                list.Add(cloneT);
             }
 
             clones[item] = list;
@@ -43,10 +52,18 @@ public class Parallax : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (velocityMultiplier < 0.01)
+        {
+            return;
+        }
+
         foreach (var item in parallaxList)
         {
+            if (item.velocity < 0.01f) continue;
+            if (!clones.ContainsKey(item)) continue;
+
             float speed = item.velocity * velocityMultiplier;
-            float spriteWidth = item.texture.bounds.size.x;
+            float spriteWidth = item.prefab.bounds.size.x;
 
             var list = clones[item];
             for (int i = 0; i < list.Count; i++)
@@ -66,5 +83,47 @@ public class Parallax : MonoBehaviour
                 }
             }
         }
+    }
+
+    async public void Hide(float delay)
+    {
+        await Task.Delay((int)(delay * 1000f));
+        foreach (List<Transform> parallax in clones.Values.ToArray())
+        {
+            parallax.ForEach((transfom) =>
+            {
+                SpriteRenderer sprite = transfom.GetComponent<SpriteRenderer>();
+                sprite.FadeSprite(sprite.color.a, 0f, transitionDuration);
+            });
+        }
+
+        await Task.Delay((int)(transitionDuration * 1000f));
+        velocityMultiplier = 0;
+    }
+
+    async public void Show(float delay)
+    {
+        await Task.Delay((int)(delay * 1000f));
+        velocityMultiplier = 1;
+        foreach (List<Transform> parallax in clones.Values.ToArray())
+        {
+            parallax.ForEach((transfom) =>
+            {
+                SpriteRenderer sprite = transfom.GetComponent<SpriteRenderer>();
+                sprite.FadeSprite(sprite.color.a, 1f, transitionDuration);
+            });
+        }
+    }
+
+    async public void Stop(float delay)
+    {
+        await Task.Delay((int)(delay * 1000f));
+        this.SmoothParallaxVelocity(velocityMultiplier, 0f, stopDuration);
+    }
+
+    async public void Go(float delay)
+    {
+        await Task.Delay((int)(delay * 1000f));
+        this.SmoothParallaxVelocity(velocityMultiplier, 1f, stopDuration);
     }
 }

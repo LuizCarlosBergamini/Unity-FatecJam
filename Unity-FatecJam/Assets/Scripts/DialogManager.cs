@@ -9,14 +9,14 @@ using UnityEditor.Rendering;
 
 public class DialogManager : MonoBehaviour
 {
-    [Header("Configurações")]
+    [Header("ConfiguraÃ§Ãµes")]
     public Dialog_SO dialogData;
-    public InputActionReference skipAction;
+    // public InputActionReference skipAction;
     public int typeSpeed = 50;
     public int clearTypeSpeed = 1;
-    public bool instantClear = false;
+    // public bool instantClear = false;
 
-    [Header("Referências UI")]
+    [Header("ReferÃªncias UI")]
     public TextMeshProUGUI dialogText;
     public TextMeshProUGUI entityNameText;
     public Image entityIcon;
@@ -33,32 +33,33 @@ public class DialogManager : MonoBehaviour
     {
         dialogText.text = "";
         entityNameText.text = "";
-        StartDialog();
-        skipAction.action.Enable();
+        // StartDialog();
+        // skipAction.action.Enable();
     }
 
     private void OnDisable()
     {
-        skipAction.action.Disable();
+        // skipAction.action.Disable();
     }
 
     private void Update()
     {
-        if (skipAction.action.WasPressedThisFrame())
-        {
-            if (isTyping)
-            {
-                skipRequested = true;
-            }
-            else
-            {
-                NextDialog();
-            }
-        }
+        // if (skipAction.action.WasPressedThisFrame())
+        // {
+        //     if (isTyping)
+        //     {
+        //         skipRequested = true;
+        //     }
+        //     else
+        //     {
+        //         NextDialog();
+        //     }
+        // }
     }
 
-    public void StartDialog()
+    async public void StartDialog(float delay)
     {
+        await Task.Delay((int)(delay * 1000f));
         if (dialogData == null) return;
         onDialogStart?.Invoke();
         currentDialogIndex = 0;
@@ -77,7 +78,7 @@ public class DialogManager : MonoBehaviour
             EndDialog();
             return;
         }
-        if (currentDialogIndex > 0 && !instantClear)
+        if (currentDialogIndex > 0 /*&& !instantClear*/)
         {
             await CleanTypeText();
         }
@@ -89,6 +90,9 @@ public class DialogManager : MonoBehaviour
             entityIcon.sprite = dialog.entity.icon;
 
         TypeText(dialog.text, dialog.entity.name);
+
+        await Task.Delay((int)(dialog.duration * 1000f));
+        NextDialog();
     }
 
 

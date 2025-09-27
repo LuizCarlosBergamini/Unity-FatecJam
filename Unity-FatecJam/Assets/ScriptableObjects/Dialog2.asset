@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf48f8c261ec914995bde34c05e50a6, type: 3}
+  m_Name: Dialog2
+  m_EditorClassIdentifier: 
+  entities:
+  - name: Alma 1
+    icon: {fileID: 0}
+  - name: Caronte
+    icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
+  dialogs:
+  - entity:
+      name: Alma 1
+      icon: {fileID: 0}
+    text: "Fui tra\xEDdo! Malditos! Eram para eles estarem no meu lugar\u2026 "
+    duration: 8
+  - entity:
+      name: Caronte
+      icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
+    text: "O que foi j\xE1 est\xE1 no passado; tua ira agora n\xE3o te ajudar\xE1
+      em nada, salvo a tua pr\xF3pria destrui\xE7\xE3o.."
+    duration: 10
+  - entity:
+      name: Caronte
+      icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
+    text: "De-me um \xF3bolo e eu te levo desse sofrimento. Deixe-me te acalmar ao
+      longo de nossa viagem."
+    duration: 10

@@ -26,7 +26,21 @@ public class FadeUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public async Task HideAsync(int delay = 0)
+    {
+        await Task.Delay(delay);
+        await _canvas.FadeCanvas(_canvas.alpha, hiddenAlpha, transitionDuration, unscaledTime);
+        gameObject.SetActive(false);
+    }
+
     public async void Show(int delay = 0)
+    {
+        gameObject.SetActive(true);
+        await Task.Delay(delay);
+        await _canvas.FadeCanvas(_canvas.alpha, visibleAlpha, transitionDuration, unscaledTime);
+    }
+
+    public async Task ShowAsync(int delay = 0)
     {
         gameObject.SetActive(true);
         await Task.Delay(delay);

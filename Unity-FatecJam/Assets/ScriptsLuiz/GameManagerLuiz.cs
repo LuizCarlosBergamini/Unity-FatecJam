@@ -18,11 +18,11 @@ public class GameManagerLuiz : MonoBehaviour {
     public static GameManagerLuiz instance;
 
     // Define the time boundaries for each stage in seconds
-    private const float STAGE1_END = 10f;      // 1:55 -- 115f
-    private const float STAGE2_START = 40f;    // 2:14 -- 134f
-    private const float STAGE2_END = 70f;      // 3:31 -- 211f
-    private const float STAGE3_START = 230f;    // 3:50 -- 230f
-    private const float STAGE3_END = 307f;      // 5:07 -- 307f
+    private const float STAGE1_END = 20f;      // 1:55 -- 115f
+    private const float STAGE2_START = 80f;    // 2:14 -- 134f
+    private const float STAGE2_END = 140f;      // 3:31 -- 211f
+    private const float STAGE3_START = 200f;    // 3:50 -- 230f
+    private const float STAGE3_END = 260f;      // 5:07 -- 307f
 
     // A property to track the current stage
     public GameStage CurrentStage { get; private set; }
@@ -45,6 +45,7 @@ public class GameManagerLuiz : MonoBehaviour {
     public bool isPaused = false;
     public bool isStarted = false;
     public bool inCutscene = false;
+    public bool isGameOver = false;
 
     private Beatmap loadedBeatmap;
 
@@ -94,6 +95,26 @@ public class GameManagerLuiz : MonoBehaviour {
             CurrentStage = GameStage.Stage1;
             OnStageChanged(CurrentStage);
         }
+    }
+
+    async public void GameOver()
+    {
+        isGameOver = true;
+
+        await Task.Delay(2000);
+
+        if (conductor.TryGetComponent(out AudioSource _audio)) {
+            _audio.Fade(_audio.volume, 0f, 3f);
+        }
+
+        if (LevelManager.instance)
+        {
+            LevelManager.instance.GameOver(0f);
+            if (LevelManager.instance.TryGetComponent(out FadeAudio fader)) {
+                fader.Show(0f);
+            }
+        }
+
     }
 
     void Update()
@@ -163,6 +184,8 @@ public class GameManagerLuiz : MonoBehaviour {
                 break;
 
             case GameStage.TransitionTo2:
+                if (PlayerManager.instance)
+                    PlayerManager.instance.AddLife(100);
                 inCutscene = true;
                 // Your logic for the transition
                 // Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);
@@ -177,6 +200,8 @@ public class GameManagerLuiz : MonoBehaviour {
                 break;
 
             case GameStage.TransitionTo3:
+                if (PlayerManager.instance)
+                    PlayerManager.instance.AddLife(100);
                 inCutscene = true;
                 // Your logic for the next transition
                 // Lira.GetComponent<ObjectFader>().FadeTo(0f, 2f);

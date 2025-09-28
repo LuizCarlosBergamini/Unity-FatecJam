@@ -28,6 +28,8 @@ public class PlayerInput : MonoBehaviour {
     {
         if (GameManagerLuiz.instance != null && (GameManagerLuiz.instance.isPaused || !GameManagerLuiz.instance.isStarted || GameManagerLuiz.instance.inCutscene)) return;
 
+        if (GameManagerLuiz.instance.isGameOver) return;
+
         for (int i = 0; i < lanes.Length; i++)
         {
             if (laneKeys[i].action.WasPerformedThisFrame())

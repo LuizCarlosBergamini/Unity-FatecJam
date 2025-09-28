@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf48f8c261ec914995bde34c05e50a6, type: 3}
+  m_Name: Dialog4
+  m_EditorClassIdentifier: 
+  entities:
+  - name: Alma 2
+    icon: {fileID: 0}
+  - name: Caronte
+    icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
+  - name: Corvo
+    icon: {fileID: 0}
+  dialogs:
+  - entity:
+      name: Alma 2
+      icon: {fileID: 0}
+    text: "Ser\xE1 que serei lembrado e minha falta far\xE1 diferen\xE7a? Que fim
+      triste me d\xE1s, \xF3 T\xE2nato!"
+    duration: 8
+  - entity:
+      name: Caronte
+      icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
+    text: "Encarar o que passa agora somente como um fim \xE9 tolice.\r\nEsse \xE9
+      o come\xE7o de um fim, mas isso n\xE3o quer dizer que depois deste nada exista.\r\nAo
+      atravessar essa borda, h\xE1 sempre um recome\xE7o.\r\n"
+    duration: 14
+  - entity:
+      name: Corvo
+      icon: {fileID: 0}
+    text: "N\xE3o consideras esse trabalho punitivo Caronte? \r\nAtravessas o submundo
+      h\xE1 tanto tempo que Hades pr\xF3prio n\xE3o saberia dizer, \xE9s mais velho
+      que a vida e mais profundo que a morte.\r\n"
+    duration: 10
+  - entity:
+      name: Caronte
+      icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
+    text: "Afirmar que minha fun\xE7\xE3o \xE9 puramente punitiva e triste seria
+      falso.\r\nAs almas que trago guardam mem\xF3rias, hist\xF3rias e qualidades,
+      cada uma diferente da anterior. Elas buscavam vingan\xE7a, amor ou at\xE9 poder,
+      ouvir suas l\xE1stimas e conceder-lhes o merecido repouso basta-me para n\xE3o
+      ceder \xE0 desesperan\xE7a.\r\n"
+    duration: 16

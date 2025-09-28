@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialog3
   m_EditorClassIdentifier: 
   entities:
-  - name: Alma 3
+  - name: Alma 2
     icon: {fileID: 0}
   - name: Caronte
     icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
@@ -21,31 +21,28 @@ MonoBehaviour:
     icon: {fileID: 0}
   dialogs:
   - entity:
-      name: Alma 3
+      name: Alma 2
       icon: {fileID: 0}
-    text: "Ser\xE1 que serei lembrado e minha falta far\xE1 diferen\xE7a? Que fim
-      triste me d\xE1s, \xF3 T\xE2nato!"
+    text: "N\xE3o quero\u2026 N\xE3o posso\u2026 Estou deixando muito\u2026 Muitos
+      para tr\xE1s\u2026 N\xE3o posso\u2026"
     duration: 8
   - entity:
       name: Caronte
       icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
-    text: "Encarar o que passa agora somente como um fim \xE9 tolice.\r\nEsse \xE9
-      o come\xE7o de um fim, mas isso n\xE3o quer dizer que depois deste nada exista.\r\nAo
-      atravessar essa borda, h\xE1 sempre um recome\xE7o.\r\n"
+    text: "Pobre alma, a morte tem seu parecer severo, mas pode ser t\xE3o serena,
+      lamentar-se agora s\xF3 te desgasta.\r\nVenha, onde irei levar-te n\xE3o haver\xE1
+      raz\xF5es para permanecer triste, pe\xE7o s\xF3 um \xF3bolo em troca de meu
+      remar.\r"
     duration: 14
   - entity:
       name: Corvo
       icon: {fileID: 0}
-    text: "N\xE3o consideras esse trabalho punitivo Caronte? \r\nAtravessas o submundo
-      h\xE1 tanto tempo que Hades pr\xF3prio n\xE3o saberia dizer, \xE9s mais velho
-      que a vida e mais profundo que a morte.\r\n"
+    text: "\xD3 barqueiro do sombrio Estige, ainda me pergunto a raz\xE3o de sua
+      persist\xEAncia. \nPor que segues neste labor t\xE3o \xE1rduo, sabendo que
+      jamais te livrar\xE1s dele?\r\n"
     duration: 10
   - entity:
       name: Caronte
       icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
-    text: "Afirmar que minha fun\xE7\xE3o \xE9 puramente punitiva e triste seria
-      falso.\r\nAs almas que trago guardam mem\xF3rias, hist\xF3rias e qualidades,
-      cada uma diferente da anterior. Elas buscavam vingan\xE7a, amor ou at\xE9 poder,
-      ouvir suas l\xE1stimas e conceder-lhes o merecido repouso basta-me para n\xE3o
-      ceder \xE0 desesperan\xE7a.\r\n"
-    duration: 20
+    text: "Se n\xE3o eu filho da pr\xF3pria escurid\xE3o, quem ent\xE3o o faria?"
+    duration: 6

@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
@@ -38,13 +39,15 @@ public static class AnimUtils
         }
     }
 
-    public async static Task MoveTransform(this Transform transform, Vector2 from, Vector2 to, float duration)
+    public async static Task MoveTransform(this Transform transform, Vector2 from, Vector2 to, float duration, CancellationToken token)
     {
         if (transform == null) return;
         float time = 0f;
 
         while (time < duration)
         {
+            token.ThrowIfCancellationRequested();
+
             time += Time.deltaTime;
             float t = Mathf.Clamp01(time / duration);
 
@@ -96,6 +99,21 @@ public static class AnimUtils
             float t = Mathf.Clamp01(time / duration);
 
             parallax.velocityMultiplier = Mathf.SmoothStep(from, to, t);
+            await Task.Yield();
+        }
+    }
+
+    public async static Task Fade(this AudioSource audio, float from, float to, float duration)
+    {
+        if (audio == null) return;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(time / duration);
+
+            audio.volume = Mathf.SmoothStep(from, to, t);
             await Task.Yield();
         }
     }

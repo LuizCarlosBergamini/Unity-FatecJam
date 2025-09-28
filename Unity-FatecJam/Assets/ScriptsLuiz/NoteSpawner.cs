@@ -12,7 +12,7 @@ public class NoteSpawner : MonoBehaviour {
     private int nextNoteIndex = 0;
 
     public Lane[] lanes;
-    
+
 
     public void Initialize(Beatmap beatmap)
     {
@@ -22,6 +22,7 @@ public class NoteSpawner : MonoBehaviour {
 
     void Update()
     {
+        if (GameManagerLuiz.instance == null || GameManagerLuiz.instance.isGameOver) return;
         if (currentBeatmap == null || nextNoteIndex >= currentBeatmap.notes.Count)
         {
             //Debug.Log("currentBeatMap not initialized");

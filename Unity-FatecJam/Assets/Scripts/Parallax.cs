@@ -79,7 +79,7 @@ public class Parallax : MonoBehaviour
                         if (other.position.x > maxX)
                             maxX = other.position.x;
 
-                    t.position = new Vector3(maxX + spriteWidth, t.position.y, t.position.z);
+                    t.position = new Vector3(maxX + spriteWidth - 0.01f, t.position.y, t.position.z);
                 }
             }
         }

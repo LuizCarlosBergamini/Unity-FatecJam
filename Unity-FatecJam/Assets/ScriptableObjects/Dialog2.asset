@@ -17,35 +17,18 @@ MonoBehaviour:
     icon: {fileID: 0}
   - name: Caronte
     icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
-  - name: Corvo
-    icon: {fileID: 0}
   dialogs:
   - entity:
       name: Alma 3
       icon: {fileID: 0}
-    text: "Ser\xE1 que serei lembrado e minha falta far\xE1 diferen\xE7a? Que fim
-      triste me d\xE1s, \xF3 T\xE2nato!"
+    text: "N\xE3o dividirei jornada com inferiores! Esses plebeus certamente n\xE3o
+      ter\xE3o o mesmo destino que minha alma her\xF3ica!"
     duration: 8
   - entity:
       name: Caronte
       icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
-    text: "Encarar o que passa agora somente como um fim \xE9 tolice.\r\nEsse \xE9
-      o come\xE7o de um fim, mas isso n\xE3o quer dizer que depois deste nada exista.\r\nAo
-      atravessar essa borda, h\xE1 sempre um recome\xE7o.\r\n"
+    text: "O cargo que tiveste j\xE1 n\xE3o tem utilidade aqui. Tudo o que um dia
+      foi teu neste lugar deixaste de possuir. Cobro o pequeno pre\xE7o de um \xF3bolo
+      para lev\xE1-lo adiante, pague, antes que perca o \xFAnico resto que te tens:
+      a si mesmo."
     duration: 14
-  - entity:
-      name: Corvo
-      icon: {fileID: 0}
-    text: "N\xE3o consideras esse trabalho punitivo Caronte? \r\nAtravessas o submundo
-      h\xE1 tanto tempo que Hades pr\xF3prio n\xE3o saberia dizer, \xE9s mais velho
-      que a vida e mais profundo que a morte.\r\n"
-    duration: 10
-  - entity:
-      name: Caronte
-      icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
-    text: "Afirmar que minha fun\xE7\xE3o \xE9 puramente punitiva e triste seria
-      falso.\r\nAs almas que trago guardam mem\xF3rias, hist\xF3rias e qualidades,
-      cada uma diferente da anterior. Elas buscavam vingan\xE7a, amor ou at\xE9 poder,
-      ouvir suas l\xE1stimas e conceder-lhes o merecido repouso basta-me para n\xE3o
-      ceder \xE0 desesperan\xE7a.\r\n"
-    duration: 20

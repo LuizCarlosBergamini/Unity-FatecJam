@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -9,15 +10,17 @@ public class MoveTransform : MonoBehaviour
 
     public async void Hide(int delay = 0)
     {
+        var fadeCancellation = new CancellationTokenSource();
         await Task.Delay(delay);
-        await transform.MoveTransform(transform.position, hidden, transitionDuration);
+        await transform.MoveTransform(transform.position, hidden, transitionDuration, fadeCancellation.Token);
         gameObject.SetActive(false);
     }
 
     public async void Show(int delay = 0)
     {
+        var fadeCancellation = new CancellationTokenSource();
         gameObject.SetActive(true);
         await Task.Delay(delay);
-        await transform.MoveTransform(transform.position, visible, transitionDuration);
+        await transform.MoveTransform(transform.position, visible, transitionDuration, fadeCancellation.Token);
     }
 }

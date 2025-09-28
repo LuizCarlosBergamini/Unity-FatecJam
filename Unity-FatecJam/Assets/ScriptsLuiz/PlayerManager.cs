@@ -73,6 +73,8 @@ public class PlayerManager : MonoBehaviour {
         else // Life is 0
         {
             targetAlpha = 0f;
+            if (GameManagerLuiz.instance)
+                GameManagerLuiz.instance.GameOver();
         }
 
         // Fade all souls to the calculated target alpha

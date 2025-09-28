@@ -64,9 +64,9 @@ public class Lane : MonoBehaviour {
     public enum Judgment { None, Miss, Good, Great, Perfect }
 
     // Timing windows in seconds
-    private const float PERFECT_WINDOW = 0.032f;
-    private const float GREAT_WINDOW = 0.055f;
-    private const float GOOD_WINDOW = 0.100f;
+    private const float PERFECT_WINDOW = 0.032f * 1.5f;
+    private const float GREAT_WINDOW = 0.055f * 1.5f;
+    private const float GOOD_WINDOW = 0.100f * 1.5f;
 
     void Update()
     {

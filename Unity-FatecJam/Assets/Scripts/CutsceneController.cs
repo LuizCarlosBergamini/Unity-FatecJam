@@ -52,8 +52,12 @@ public class CutsceneController : MonoBehaviour
         if (MenuController.instance)
             MenuController.instance.Hide(0f);
 
-        if (currentParallax <= almas.Count && almas[currentParallax].outBoat != null && almas[currentParallax].outBoat.TryGetComponent(out MoveTransform move))
+        if (currentParallax <= almas.Count && almas[currentParallax].outBoat != null)
         {
+            MoveTransform move = almas[currentParallax].outBoat.GetComponent<MoveTransform>();
+            if (move == null)
+                move = almas[currentParallax].outBoat.GetComponentInParent<MoveTransform>();
+
             move.Show(0);
 
             StopNavigate(move.transitionDuration - 3f);
@@ -77,7 +81,7 @@ public class CutsceneController : MonoBehaviour
         Debug.Log("current: " + currentParallax);
         if (currentParallax == 3)
         {
-            Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            // Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             corvo.Play();
             LevelManager.instance.ReloadScene();
             return;
@@ -90,7 +94,13 @@ public class CutsceneController : MonoBehaviour
         if (currentParallax <= almas.Count)
         {
             if (almas[currentParallax].outBoat != null)
+            {
                 almas[currentParallax].outBoat.Hide(0f);
+                if (almas[currentParallax].outBoat.transform.parent.GetChild(1).TryGetComponent(out FadeSprite fade2))
+                {
+                    fade2.Hide(0f);
+                }
+            }
             if (almas[currentParallax].inBoat != null)
                 almas[currentParallax].inBoat.Show(1f);
         }

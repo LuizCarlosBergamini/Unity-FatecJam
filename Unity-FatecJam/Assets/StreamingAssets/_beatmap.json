@@ -1,0 +1,63 @@
+{
+    "songName": "Megalovania",
+    "artistName": "Toby Fox",
+    "bpm": 240.0,
+    "notes": [
+        {
+            "timestamp": 19.093334197998048,
+            "laneIndex": 0
+        },
+        {
+            "timestamp": 20.031999588012697,
+            "laneIndex": 1
+        },
+        {
+            "timestamp": 21.077333450317384,
+            "laneIndex": 2
+        },
+        {
+            "timestamp": 21.866666793823243,
+            "laneIndex": 3
+        },
+        {
+            "timestamp": 30.549333572387697,
+            "laneIndex": 4
+        },
+        {
+            "timestamp": 31.14666748046875,
+            "laneIndex": 3
+        },
+        {
+            "timestamp": 31.722665786743165,
+            "laneIndex": 2
+        },
+        {
+            "timestamp": 32.512001037597659,
+            "laneIndex": 0
+        },
+        {
+            "timestamp": 33.13066482543945,
+            "laneIndex": 2
+        },
+        {
+            "timestamp": 33.49333190917969,
+            "laneIndex": 1
+        },
+        {
+            "timestamp": 33.87733459472656,
+            "laneIndex": 3
+        },
+        {
+            "timestamp": 34.28266525268555,
+            "laneIndex": 0
+        },
+        {
+            "timestamp": 34.75199890136719,
+            "laneIndex": 3
+        },
+        {
+            "timestamp": 34.75199890136719,
+            "laneIndex": 4
+        }
+    ]
+}

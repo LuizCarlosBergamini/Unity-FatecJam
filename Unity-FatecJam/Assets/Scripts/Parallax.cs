@@ -40,8 +40,8 @@ public class Parallax : MonoBehaviour
                 cloneObj.SetActive(true);
 
                 Transform cloneT = cloneObj.transform;
-                cloneT.position = new Vector3(i * spriteWidth - i * 0.1f, item.prefab.transform.position.y, item.prefab.transform.position.z);
-                cloneT.localScale = item.prefab.transform.localScale;
+                cloneT.position = new Vector3(i * spriteWidth, item.prefab.transform.position.y, item.prefab.transform.position.z);
+                cloneT.localScale = item.prefab.transform.localScale + Vector3.one * 0.01f;
 
                 list.Add(cloneT);
             }
@@ -79,7 +79,7 @@ public class Parallax : MonoBehaviour
                         if (other.position.x > maxX)
                             maxX = other.position.x;
 
-                    t.position = new Vector3(maxX + spriteWidth - i * 0.1f, t.position.y, t.position.z);
+                    t.position = new Vector3(maxX + spriteWidth, t.position.y, t.position.z);
                 }
             }
         }

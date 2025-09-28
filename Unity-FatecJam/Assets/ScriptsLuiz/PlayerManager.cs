@@ -51,6 +51,7 @@ public class PlayerManager : MonoBehaviour {
     /// </summary>
     private void UpdateSoulVisibility()
     {
+        souls = GameObject.FindGameObjectsWithTag("Soul");
         float targetAlpha = 1f; // Default to fully visible
 
         // Use if/else if to handle the ranges correctly
@@ -80,10 +81,16 @@ public class PlayerManager : MonoBehaviour {
         // Fade all souls to the calculated target alpha
         foreach (GameObject soul in souls)
         {
+            Debug.Log("foo");
             if (soul.activeInHierarchy)
             {
+                Debug.Log("foo1");
+                if (soul.TryGetComponent(out SpriteRenderer sprite))
+                {
+                    sprite.FadeSprite(sprite.color.a, targetAlpha, 0.5f);
+                }
                 // We can simplify the call since FadeIn and FadeOut do the same thing
-                soul.GetComponent<ObjectFader>().FadeTo(targetAlpha, 0.5f);
+                // soul.GetComponent<ObjectFader>().FadeTo(targetAlpha, 0.5f);
             }
         }
     }

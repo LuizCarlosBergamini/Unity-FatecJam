@@ -178,12 +178,9 @@ public class GameManagerLuiz : MonoBehaviour {
             case GameStage.Stage1:
                 // Your logic for Stage 1
                 // Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
-                if (LevelManager.instance)
+                if (LevelManager.instance && LevelManager.instance.TryGetComponent(out FadeAudio fader))
                 {
-                    LevelManager.instance.GameOver(0f);
-                    if (LevelManager.instance.TryGetComponent(out FadeAudio fader)) {
-                        fader.Hide(0f);
-                    }
+                    fader.Hide(0f);
                 }
                 Lane.damageOnMiss = 7;
                 OnStage1?.Invoke();

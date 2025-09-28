@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entities:
   - name: Alma 2
-    icon: {fileID: 0}
+    icon: {fileID: -2098509499640960309, guid: 7911218c0cf0a7145a24958e6700ac08, type: 3}
   - name: Caronte
     icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
   - name: Corvo
@@ -22,7 +22,7 @@ MonoBehaviour:
   dialogs:
   - entity:
       name: Alma 2
-      icon: {fileID: 0}
+      icon: {fileID: -2098509499640960309, guid: 7911218c0cf0a7145a24958e6700ac08, type: 3}
     text: "Ser\xE1 que serei lembrado e minha falta far\xE1 diferen\xE7a? Que fim
       triste me d\xE1s, \xF3 T\xE2nato!"
     duration: 8

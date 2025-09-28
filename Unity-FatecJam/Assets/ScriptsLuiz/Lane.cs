@@ -84,7 +84,7 @@ public class Lane : MonoBehaviour {
                 // Dequeue the note and process it as a Miss.
                 NoteMovement missedNote = notesInLane.Dequeue();
                 GameEvent.instance.OnNoteJudged(Judgment.Miss, missedNote.noteData.laneIndex);
-                PlayerManager.instance.RemoveLife(damageOnMiss * 2);
+                PlayerManager.instance.RemoveLife(damageOnMiss);
                 Destroy(missedNote.gameObject);
             }
         }

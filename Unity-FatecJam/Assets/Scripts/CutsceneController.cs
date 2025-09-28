@@ -59,7 +59,7 @@ public class CutsceneController : MonoBehaviour
         }
     }
 
-    public void FinishDialog()
+    async public void FinishDialog()
     {
         if (CoinEmiter.instance)
         {
@@ -79,6 +79,12 @@ public class CutsceneController : MonoBehaviour
 
         StartNavigate(2f);
         ChangeParallax(6f);
+        // Debug.Log(currentParallax);
+        // if (currentParallax == 0)
+        // {
+        //     await Task.Delay(10000);
+        //     TriggerCutscene();
+        // }
     }
 
     async public void ChangeParallax(float delay)

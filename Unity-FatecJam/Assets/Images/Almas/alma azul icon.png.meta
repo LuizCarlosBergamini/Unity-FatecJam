@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6353d1d8443329b46968ce62b6a9163f
+guid: 7911218c0cf0a7145a24958e6700ac08
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1731233477802622841
-    second: game over_0
+      213: -2098509499640960309
+    second: alma azul icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: game over_0
+      name: alma azul icon_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 534
+        height: 536
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7808f4c035c69f7e0800000000000000
-      internalID: -1731233477802622841
+      spriteID: bca2e1c7ab890e2e0800000000000000
+      internalID: -2098509499640960309
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      game over_0: -1731233477802622841
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

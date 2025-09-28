@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: Dialog1
   m_EditorClassIdentifier: 
   entities:
-  - name: Alma 1
+  - name: Alma Vermelha
     icon: {fileID: 4605165697322916099, guid: 8ba338972dad740429b3a60797b2c91b, type: 3}
+  - name: Alma Dourada
+    icon: {fileID: 0}
+  - name: Alma Azul
+    icon: {fileID: 0}
+  - name: Corvo
+    icon: {fileID: 0}
   - name: Caronte
     icon: {fileID: -372853558253606128, guid: 5269993dccb0b2940b99b239d6bd1cf0, type: 3}
   dialogs:
   - entity:
-      name: Alma 1
+      name: Alma Vermelha
       icon: {fileID: 4605165697322916099, guid: 8ba338972dad740429b3a60797b2c91b, type: 3}
     text: "Fui tra\xEDdo! Malditos! Eram para eles estarem no meu lugar\u2026 "
     duration: 6

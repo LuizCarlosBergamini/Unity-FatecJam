@@ -14,6 +14,7 @@ public class DialogManager : MonoBehaviour
     // public InputActionReference skipAction;
     public int typeSpeed = 50;
     public int clearTypeSpeed = 1;
+    public AudioSource corvo;
     // public bool instantClear = false;
 
     [Header("Referências UI")]
@@ -98,6 +99,10 @@ public class DialogManager : MonoBehaviour
         if (entityIcon != null)
             entityIcon.sprite = dialog.entity.icon;
 
+        if (dialog.entity.name == "Corvo")
+        {
+            corvo.Play();
+        }
         TypeText(dialog.text, dialog.entity.name);
 
         await Task.Delay((int)(dialog.duration * 1000f));

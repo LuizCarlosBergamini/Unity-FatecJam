@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public struct AlmaMap
@@ -17,6 +18,10 @@ public class CutsceneController : MonoBehaviour
     [SerializeField] List<AlmaMap> almas;
     [SerializeField] List<Dialog_SO> dialogs;
     [SerializeField] private Animator caronte;
+
+    [SerializeField] public List<UnityEvent> OnFisish;
+    [SerializeField] public AudioSource cutsceneAudio;
+    [SerializeField] public AudioSource corvo;
 
     private int currentParallax = 0;
 
@@ -42,7 +47,7 @@ public class CutsceneController : MonoBehaviour
         }
     }
 
-    public void TriggerCutscene()
+    async public void TriggerCutscene()
     {
         if (MenuController.instance)
             MenuController.instance.Hide(0f);
@@ -56,11 +61,27 @@ public class CutsceneController : MonoBehaviour
             {
                 DialogManager.instance.StartDialog(move.transitionDuration);
             }
+
+            GameManagerLuiz.instance.inCutscene = true;
+            GameManagerLuiz.instance.isPaused = true;
+            await Conductor.instance.GetComponent<AudioSource>().Fade(0.25f, 0f, 1f);
+            Conductor.instance.Pause();
+            cutsceneAudio.volume = 0;
+            cutsceneAudio.Play();
+            cutsceneAudio.Fade(0f, 0.25f, 1f);
         }
     }
 
     async public void FinishDialog()
     {
+        Debug.Log("current: " + currentParallax);
+        if (currentParallax == 3)
+        {
+            Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            corvo.Play();
+            LevelManager.instance.ReloadScene();
+            return;
+        }
         if (CoinEmiter.instance)
         {
             CoinEmiter.instance.Emit(0f);
@@ -79,12 +100,17 @@ public class CutsceneController : MonoBehaviour
 
         StartNavigate(2f);
         ChangeParallax(6f);
-        // Debug.Log(currentParallax);
-        // if (currentParallax == 0)
-        // {
-        //     await Task.Delay(10000);
-        //     TriggerCutscene();
-        // }
+        await Task.Delay(6000);
+        GameManagerLuiz.instance.isPaused = false;
+        GameManagerLuiz.instance.inCutscene = false;
+        Conductor.instance.Unpause();
+        await Conductor.instance.GetComponent<AudioSource>().Fade(0f, 0.25f, 1f);
+        cutsceneAudio.Fade(0.25f, 0f, 1f);
+        cutsceneAudio.Stop();
+        if (OnFisish[currentParallax - 1] != null)
+        {
+            OnFisish[currentParallax - 1]?.Invoke();
+        }
     }
 
     async public void ChangeParallax(float delay)

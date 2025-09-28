@@ -99,7 +99,6 @@ public class LevelManager : MonoBehaviour
 
     public void ReloadScene()
     {
-
         LoadScene(SceneManager.GetActiveScene().name);
     }
 

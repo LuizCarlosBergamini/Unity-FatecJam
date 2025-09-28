@@ -18,11 +18,11 @@ public class GameManagerLuiz : MonoBehaviour {
     public static GameManagerLuiz instance;
 
     // Define the time boundaries for each stage in seconds
-    private const float STAGE1_END = 20f;      // 1:55 -- 115f
-    private const float STAGE2_START = 80f;    // 2:14 -- 134f
-    private const float STAGE2_END = 140f;      // 3:31 -- 211f
-    private const float STAGE3_START = 200f;    // 3:50 -- 230f
-    private const float STAGE3_END = 260f;      // 5:07 -- 307f
+    private const float STAGE1_END = 115f;      // 1:55 -- 115f
+    private const float STAGE2_START = 134f;    // 2:14 -- 134f
+    private const float STAGE2_END = 211f;      // 3:31 -- 211f
+    private const float STAGE3_START = 230f;    // 3:50 -- 230f
+    private const float STAGE3_END = 307f;      // 5:07 -- 307f
 
     // A property to track the current stage
     public GameStage CurrentStage { get; private set; }
@@ -114,7 +114,6 @@ public class GameManagerLuiz : MonoBehaviour {
                 fader.Show(0f);
             }
         }
-
     }
 
     void Update()
@@ -179,6 +178,13 @@ public class GameManagerLuiz : MonoBehaviour {
             case GameStage.Stage1:
                 // Your logic for Stage 1
                 // Lira.GetComponent<ObjectFader>().FadeTo(1f, 2f);
+                if (LevelManager.instance)
+                {
+                    LevelManager.instance.GameOver(0f);
+                    if (LevelManager.instance.TryGetComponent(out FadeAudio fader)) {
+                        fader.Hide(0f);
+                    }
+                }
                 Lane.damageOnMiss = 7;
                 OnStage1?.Invoke();
                 break;

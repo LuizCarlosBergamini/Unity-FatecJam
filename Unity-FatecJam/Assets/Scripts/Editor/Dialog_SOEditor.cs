@@ -18,6 +18,7 @@ public class Dialog_SOEditor : Editor
     {
         serializedObject.Update();
 
+        // --- ENTITIES ---
         EditorGUILayout.LabelField("Entities", EditorStyles.boldLabel);
         for (int i = 0; i < entitiesProp.arraySize; i++)
         {
@@ -26,23 +27,19 @@ public class Dialog_SOEditor : Editor
             SerializedProperty iconProp = entityProp.FindPropertyRelative("icon");
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PropertyField(nameProp, GUIContent.none);
+
+            // Nome só leitura
+            EditorGUILayout.LabelField(nameProp.stringValue, GUILayout.Width(120));
+
+            // Ícone editável
             EditorGUILayout.PropertyField(iconProp, GUIContent.none, GUILayout.Width(100));
 
-            if (GUILayout.Button("X", GUILayout.Width(20)))
-            {
-                entitiesProp.DeleteArrayElementAtIndex(i);
-                break;
-            }
             EditorGUILayout.EndHorizontal();
         }
 
-        if (GUILayout.Button("Add Entity"))
-        {
-            entitiesProp.InsertArrayElementAtIndex(entitiesProp.arraySize);
-        }
+        EditorGUILayout.Space(10);
 
-        EditorGUILayout.Space();
+        // --- DIALOGS ---
         EditorGUILayout.LabelField("Dialogs", EditorStyles.boldLabel);
 
         for (int i = 0; i < dialogsProp.arraySize; i++)
@@ -57,6 +54,7 @@ public class Dialog_SOEditor : Editor
 
             EditorGUILayout.BeginVertical("box");
 
+            // Dropdown de entidades
             List<string> entityNames = new List<string>();
             for (int j = 0; j < entitiesProp.arraySize; j++)
             {
@@ -64,7 +62,7 @@ public class Dialog_SOEditor : Editor
             }
 
             int currentIndex = Mathf.Max(0, entityNames.IndexOf(dialogEntityName.stringValue));
-            int newIndex = EditorGUILayout.Popup(currentIndex, entityNames.ToArray());
+            int newIndex = EditorGUILayout.Popup("Entity", currentIndex, entityNames.ToArray());
 
             if (newIndex >= 0 && newIndex < entitiesProp.arraySize)
             {
@@ -73,8 +71,9 @@ public class Dialog_SOEditor : Editor
                 dialogEntityIcon.objectReferenceValue = selectedEntity.FindPropertyRelative("icon").objectReferenceValue;
             }
 
+            // Texto e duração
             textProp.stringValue = EditorGUILayout.TextArea(textProp.stringValue, GUILayout.MinHeight(60));
-            durationProp.floatValue = EditorGUILayout.FloatField(durationProp.floatValue);
+            durationProp.floatValue = EditorGUILayout.FloatField("Duration", durationProp.floatValue);
 
             if (GUILayout.Button("Remove Dialog"))
             {

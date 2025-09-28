@@ -43,7 +43,7 @@ public class PauseManager : MonoBehaviour
 
     public async void Pause()
     {
-        if (GameManagerLuiz.instance && !GameManagerLuiz.instance.isStarted) return;
+        if (GameManagerLuiz.instance && (!GameManagerLuiz.instance.isStarted || GameManagerLuiz.instance.inCutscene)) return;
         isPaused = true;
         _disablePause = true;
         onPause?.Invoke();

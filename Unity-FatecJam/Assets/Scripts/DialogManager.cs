@@ -10,6 +10,7 @@ using UnityEditor.Rendering;
 public class DialogManager : MonoBehaviour
 {
     [Header("Configurações")]
+    public static DialogManager instance;
     public Dialog_SO dialogData;
     // public InputActionReference skipAction;
     public int typeSpeed = 50;
@@ -33,6 +34,15 @@ public class DialogManager : MonoBehaviour
     {
         dialogText.text = "";
         entityNameText.text = "";
+
+        if (instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
         // StartDialog();
         // skipAction.action.Enable();
     }

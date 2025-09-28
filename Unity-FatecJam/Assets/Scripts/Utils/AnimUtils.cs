@@ -6,14 +6,14 @@ using UnityEngine;
 
 public static class AnimUtils
 {
-    public async static Task MoveAnchor(this RectTransform rect, Vector2 from, Vector2 to, float duration)
+    public async static Task MoveAnchor(this RectTransform rect, Vector2 from, Vector2 to, float duration, bool unscaledTime = true)
     {
         if (rect == null) return;
         float time = 0f;
 
         while (time < duration)
         {
-            time += Time.unscaledDeltaTime;
+            time += unscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
             float t = Mathf.Clamp01(time / duration);
 
             float easeT = Mathf.SmoothStep(0f, 1f, t);
@@ -23,14 +23,14 @@ public static class AnimUtils
         }
     }
 
-    public async static Task FadeCanvas(this CanvasGroup canvas, float from, float to, float duration)
+    public async static Task FadeCanvas(this CanvasGroup canvas, float from, float to, float duration, bool unscaledTime = true)
     {
         if (canvas == null) return;
         float time = 0f;
 
         while (time < duration)
         {
-            time += Time.unscaledDeltaTime;
+            time += unscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
             float t = Mathf.Clamp01(time / duration);
 
             canvas.alpha = Mathf.SmoothStep(from, to, t);
@@ -45,7 +45,7 @@ public static class AnimUtils
 
         while (time < duration)
         {
-            time += Time.unscaledDeltaTime;
+            time += Time.deltaTime;
             float t = Mathf.Clamp01(time / duration);
 
             float easeT = Mathf.SmoothStep(0f, 1f, t);
@@ -62,7 +62,7 @@ public static class AnimUtils
 
         while (time < duration)
         {
-            time += Time.unscaledDeltaTime;
+            time += Time.deltaTime;
             float t = Mathf.Clamp01(time / duration);
 
             sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(from, to, t));
@@ -77,7 +77,7 @@ public static class AnimUtils
 
         while (time < duration)
         {
-            time += Time.unscaledDeltaTime;
+            time += Time.deltaTime;
             float t = Mathf.Clamp01(time / duration);
 
             sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(from, to, t));
@@ -92,7 +92,7 @@ public static class AnimUtils
 
         while (time < duration)
         {
-             time += Time.unscaledDeltaTime;
+            time += Time.deltaTime;
             float t = Mathf.Clamp01(time / duration);
 
             parallax.velocityMultiplier = Mathf.SmoothStep(from, to, t);

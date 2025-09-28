@@ -19,8 +19,8 @@ public class GameManagerLuiz : MonoBehaviour {
 
     // Define the time boundaries for each stage in seconds
     private const float STAGE1_END = 10f;      // 1:55 -- 115f
-    private const float STAGE2_START = 134f;    // 2:14 -- 134f
-    private const float STAGE2_END = 211f;      // 3:31 -- 211f
+    private const float STAGE2_START = 40f;    // 2:14 -- 134f
+    private const float STAGE2_END = 70f;      // 3:31 -- 211f
     private const float STAGE3_START = 230f;    // 3:50 -- 230f
     private const float STAGE3_END = 307f;      // 5:07 -- 307f
 
@@ -102,7 +102,7 @@ public class GameManagerLuiz : MonoBehaviour {
         {
             // Check for end-of-song condition
             // This is a simple check; a more robust version would use the last note's timestamp
-            if (!conductor.GetComponent<AudioSource>().isPlaying && conductor.songPosition > 1f)
+            if (!conductor.GetComponent<AudioSource>().isPlaying && isStarted && !isPaused)
             {
                 EndGameplay();
             }

@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
+    public static MenuController instance;
     [SerializeField] List<GameObject> menuElements;
+
+    void Start()
+    {
+        if (instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     async public void Hide(float delay)
     {

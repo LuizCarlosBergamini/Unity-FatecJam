@@ -8,6 +8,7 @@ public class MoveUI : MonoBehaviour
     public Vector2 visiblePosition;
     public Vector2 hiddenPosition;
     public float transitionDuration = 0.5f;
+    public bool unscaledTime = true;
 
     private RectTransform _rectTransform = null;
 
@@ -20,12 +21,12 @@ public class MoveUI : MonoBehaviour
     public async void Hide(int delay = 0)
     {
         await Task.Delay(delay);
-        await _rectTransform.MoveAnchor(_rectTransform.anchoredPosition, hiddenPosition, transitionDuration);
+        await _rectTransform.MoveAnchor(_rectTransform.anchoredPosition, hiddenPosition, transitionDuration, unscaledTime);
     }
 
     public async void Show(int delay = 0)
     {
         await Task.Delay(delay);
-        await _rectTransform.MoveAnchor(_rectTransform.anchoredPosition, visiblePosition, transitionDuration);
+        await _rectTransform.MoveAnchor(_rectTransform.anchoredPosition, visiblePosition, transitionDuration, unscaledTime);
     }
 }

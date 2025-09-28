@@ -59,7 +59,7 @@ public class PauseManager : MonoBehaviour
         _disablePause = true;
         onUnpause?.Invoke();
 
-        if (GameManagerLuiz.instance && GameManagerLuiz.instance.isStarted && countdownContainer != null && countdownText != null)
+        if (GameManagerLuiz.instance && GameManagerLuiz.instance.isStarted && !GameManagerLuiz.instance.inCutscene && countdownContainer != null && countdownText != null)
         {
             countdownContainer.Show();
             await Task.Delay(250);

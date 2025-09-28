@@ -9,6 +9,7 @@ public class FadeUI : MonoBehaviour
     public float visibleAlpha;
     public float hiddenAlpha;
     public float transitionDuration = 0.5f;
+    public bool unscaledTime = true;
 
     private CanvasGroup _canvas = null;
 
@@ -21,7 +22,7 @@ public class FadeUI : MonoBehaviour
     public async void Hide(int delay = 0)
     {
         await Task.Delay(delay);
-        await _canvas.FadeCanvas(_canvas.alpha, hiddenAlpha, transitionDuration);
+        await _canvas.FadeCanvas(_canvas.alpha, hiddenAlpha, transitionDuration, unscaledTime);
         gameObject.SetActive(false);
     }
 
@@ -29,7 +30,7 @@ public class FadeUI : MonoBehaviour
     {
         gameObject.SetActive(true);
         await Task.Delay(delay);
-        await _canvas.FadeCanvas(_canvas.alpha, visibleAlpha, transitionDuration);
+        await _canvas.FadeCanvas(_canvas.alpha, visibleAlpha, transitionDuration, unscaledTime);
     }
 
 
